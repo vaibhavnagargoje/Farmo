@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+
+{% block title %} About {% endblock title %}
+
+<!-- body    -->
+{% block body %}
+
+{%load static %}
+
+
+ <!-- about section  -->
+ <section class="p-5" id="learn">
+    <div class="container">
+        <div class="row align-itmes-center justify-content-between">
+
+            <div class="col-md">
+                <img src='{% static "01.png" %}' class="img-fluid">
+            </div>
+            <div class="col-md p-5">
+                <h2> Our Focus </h2>
+                <p class="lead"> In Rural as Well as urban areas, mainely organized and unorganized Farmers need Modern Agricultural Machinery, Vehicles for Transportation as well as Agricultural Laborers and Workers,it will be available on a single Mobile or Website </p>
+                <p>
+                
+                </p>
+                <a href="#" class="btn btn-lignt mt-3">
+                    <i class="bi bi-chevron-right"></i> read more</a>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<section class="p-5 bg-dark text-light" id="learn">
+    <div class="container">
+        <div class="row align-itmes-center justify-content-between">
+
+            
+            <div class="col-md p-5 ">
+                <h2>How can we help you? </h2>
+                <p >
+                   
+                    1) All the information about the machinery, Vehicles & Tools in the area is available on the Mobile App. 
+                </p >
+                <p >  2) Easy contact with all present workers.</p>
+                <p >  3) By comparing prices , you can find workers and equipment at affordable prices. </p>
+                <p > 4) You can get self-employment as a self-employed worker or by registering your own Vehicle, Machinery, Equipment and providing services to other's.  </p>
+                   
+                <a href="#" class="btn btn-dark mt-3">
+                    <i class="bi bi-chevron-right"></i>read more</a>
+                
+            </div>
+            <div class="col-md">
+                <img src='{% static "farmo templet.jpg" %}' class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock body%}
+
+
+
+{%  block footer   %}
+
+{% endblock footer%}
+

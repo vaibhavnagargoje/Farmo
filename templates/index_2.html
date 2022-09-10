@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title>Hello, world!</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .product-item {
+      border: 2px solid gray;
+    }
+
+    .product-img {
+      position: relative;
+      overflow: hidden;
+
+    }
+
+    .btns {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .btns button {
+      border: none;
+      background-color: gray;
+      color: white;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btns button:hover {
+      color: #fcb941;
+
+    }
+
+    .heart-icon {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 30px;
+    }
+
+    .product-type {
+      font-size: 15px;
+      opacity: 0.7;
+    }
+
+    /* .product-name{
+        transition: all 0.3s ease-in-out;
+      } */
+    .product-name:hover {
+      color: black !important;
+      font-weight: 1000;
+    }
+
+    .product-price {
+      color: #fcb941;
+    }
+
+    .rating {
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Hello, world!</h1>
+  {%load static %}
+  <div class="container">
+    <div class="row my-5" style="max-height: 200px;">
+      <h1 class="text-center"> Your Products </h1>
+      <p class="fw-light w-75 mx-auto">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quis fuga in molestiae libero! Expedita
+        voluptate repudiandae fugit inventore recusandae.
+      </p>
+    </div>
+
+
+    <div class="row g-4 my-5">
+      <div class="col-md-4 product-item mx-auto">
+        <div class="product-img">
+          <img src='{% static "img.png" %}' alt="" class="img-fluid d-block mx-auto">
+          <span class="heart-icon">
+            <i class="far fa-heart"></i>
+          </span>
+          <div class="row btns w-100 mx-auto text-center">
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-cart-plus">
+              </i>
+              Add to Cart
+            </button>
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-binoculars">
+              </i>view
+
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product-info p-3">
+          <span class="product-type">
+            electronics and accessories
+          </span>
+          <a href="" class="d-block text-dark text-decoration-none py-2 product-name"> vaibhav - this is man with best
+            personality </a>
+          <span class="product-price">$ 300000000
+
+          </span>
+          <div class="rating d-flex mt-1">
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="">(30 reviews ) </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col product-item mx-auto">
+        <div class="product-img">
+          <img src='{% static "img.png" %}' alt="" class="img-fluid d-block mx-auto">
+          <span class="heart-icon">
+            <i class="far fa-heart"></i>
+          </span>
+          <div class="row btns w-100 mx-auto text-center">
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-cart-plus">
+              </i>
+              Add to Cart
+            </button>
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-binoculars">
+              </i>view
+
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product-info p-3">
+          <span class="product-type">
+            electronics and accessories
+          </span>
+          <a href="" class="d-block text-dark text-decoration-none py-2 product-name"> vaibhav - this is man with best
+            personality </a>
+          <span class="product-price">$ 300000000
+
+          </span>
+          <div class="rating d-flex mt-1">
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="">(30 reviews ) </span>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item mx-auto">
+        <div class="product-img">
+          <img src='{% static "img.png" %}' alt="" class="img-fluid d-block mx-auto">
+          <span class="heart-icon">
+            <i class="far fa-heart"></i>
+          </span>
+          <div class="row btns w-100 mx-auto text-center">
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-cart-plus">
+              </i>
+              Add to Cart
+            </button>
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-binoculars">
+              </i>view
+
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product-info p-3">
+          <span class="product-type">
+            electronics and accessories
+          </span>
+          <a href="" class="d-block text-dark text-decoration-none py-2 product-name"> vaibhav - this is man with best
+            personality </a>
+          <span class="product-price">$ 300000000
+
+          </span>
+          <div class="rating d-flex mt-1">
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="">(30 reviews ) </span>
+          </div>
+        </div>
+      </div>
+      <div class="col product-item mx-auto">
+        <div class="product-img">
+          <img src='{% static "img.png" %}' alt="" class="img-fluid d-block mx-auto">
+          <span class="heart-icon">
+            <i class="far fa-heart"></i>
+          </span>
+          <div class="row btns w-100 mx-auto text-center">
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-cart-plus">
+              </i>
+              Add to Cart
+            </button>
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-binoculars">
+              </i>view
+
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product-info p-3">
+          <span class="product-type">
+            electronics and accessories
+          </span>
+          <a href="" class="d-block text-dark text-decoration-none py-2 product-name"> vaibhav - this is man with best
+            personality </a>
+          <span class="product-price">$ 300000000
+
+          </span>
+          <div class="rating d-flex mt-1">
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="">(30 reviews ) </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col product-item mx-auto">
+        <div class="product-img">
+          <img src='{% static "img.png" %}' alt="" class="img-fluid d-block mx-auto">
+          <span class="heart-icon">
+            <i class="far fa-heart"></i>
+          </span>
+          <div class="row btns w-100 mx-auto text-center">
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-cart-plus">
+              </i>
+              Add to Cart
+            </button>
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-binoculars">
+              </i>view
+
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product-info p-3">
+          <span class="product-type">
+            electronics and accessories
+          </span>
+          <a href="" class="d-block text-dark text-decoration-none py-2 product-name"> vaibhav - this is man with best
+            personality </a>
+          <span class="product-price">$ 300000000
+
+          </span>
+          <div class="rating d-flex mt-1">
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="">(30 reviews ) </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col product-item mx-auto">
+        <div class="product-img">
+          <img src='{% static "img.png" %}' alt="" class="img-fluid d-block mx-auto">
+          <span class="heart-icon">
+            <i class="far fa-heart"></i>
+          </span>
+          <div class="row btns w-100 mx-auto text-center">
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-cart-plus">
+              </i>
+              Add to Cart
+            </button>
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-binoculars">
+              </i>view
+
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product-info p-3">
+          <span class="product-type">
+            electronics and accessories
+          </span>
+          <a href="" class="d-block text-dark text-decoration-none py-2 product-name"> vaibhav - this is man with best
+            personality </a>
+          <span class="product-price">$ 300000000
+
+          </span>
+          <div class="rating d-flex mt-1">
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="">(30 reviews ) </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col product-item mx-auto">
+        <div class="product-img">
+          <img src='{% static "img.png" %}' alt="" class="img-fluid d-block mx-auto">
+          <span class="heart-icon">
+            <i class="far fa-heart"></i>
+          </span>
+          <div class="row btns w-100 mx-auto text-center">
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-cart-plus">
+              </i>
+              Add to Cart
+            </button>
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-binoculars">
+              </i>view
+
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product-info p-3">
+          <span class="product-type">
+            electronics and accessories
+          </span>
+          <a href="" class="d-block text-dark text-decoration-none py-2 product-name"> vaibhav - this is man with best
+            personality </a>
+          <span class="product-price">$ 300000000
+
+          </span>
+          <div class="rating d-flex mt-1">
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="">(30 reviews ) </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col product-item mx-auto">
+        <div class="product-img">
+          <img src='{% static "img.png" %}' alt="" class="img-fluid d-block mx-auto">
+          <span class="heart-icon">
+            <i class="far fa-heart"></i>
+          </span>
+          <div class="row btns w-100 mx-auto text-center">
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-cart-plus">
+              </i>
+              Add to Cart
+            </button>
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-binoculars">
+              </i>view
+
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product-info p-3">
+          <span class="product-type">
+            electronics and accessories
+          </span>
+          <a href="" class="d-block text-dark text-decoration-none py-2 product-name"> vaibhav - this is man with best
+            personality </a>
+          <span class="product-price">$ 300000000
+
+          </span>
+          <div class="rating d-flex mt-1">
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="">(30 reviews ) </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col product-item mx-auto">
+        <div class="product-img">
+          <img src='{% static "img.png" %}' alt="" class="img-fluid d-block mx-auto">
+          <span class="heart-icon">
+            <i class="far fa-heart"></i>
+          </span>
+          <div class="row btns w-100 mx-auto text-center">
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-cart-plus">
+              </i>
+              Add to Cart
+            </button>
+            <button class="col-6 py-2" type="button">
+              <i class="fa fa-binoculars">
+              </i>view
+
+            </button>
+          </div>
+        </div>
+
+
+        <div class="product-info p-3">
+          <span class="product-type">
+            electronics and accessories
+          </span>
+          <a href="" class="d-block text-dark text-decoration-none py-2 product-name"> vaibhav - this is man with best
+            personality </a>
+          <span class="product-price">$ 300000000
+
+          </span>
+          <div class="rating d-flex mt-1">
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="fa fa-star">
+
+            </span>
+            <span class="">(30 reviews ) </span>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
