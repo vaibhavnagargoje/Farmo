@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% comment %} {% static 'card_img' as baseimg %} {% endcomment %}
+
+{% block title %} Workers {% endblock title %}
+
+<!-- body    -->
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my cards </title>
+    <link rel="stylesheet" href="{% static '/cardcss/cards_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+    <div class="gallery">
+
+        {% for dest in dests %}
+        {% if dest.product_catg == "Workers" or dest.product_catg == "Labor" %}
+        <div class="product-content">
+            <img src='/media/{{dest.product_img}}' alt="">
+            <h3> {{dest.product_name}}</h3>
+            <p>{{dest.seller_name}}</p>
+            <p><b>Mo:-{{dest.mobile}}</b></p>
+            <h6>price &#8377; {{dest.price}}/-  </h6>
+            <ul>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star "></i></li>
+            </ul>
+            <button class="buy-1">Call Now </button>
+
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+</body>
+</html>
+{% endblock body%}
+
