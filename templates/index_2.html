@@ -107,34 +107,17 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="/about/">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/contact">Contact</a>
+          <a class="nav-link" href="/contact/">Contact</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/services" id="navbarDropdown" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Services
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/workers_page">Workers</a></li>
-            <li><a class="dropdown-item" href="/machinorys_page">Machinorys</a></li>
-            <!-- <li><hr class="dropdown-divider"></li> -->
-            <li><a class="dropdown-item" href="vehicals_page">Vehicals</a></li>
-          </ul>
-        </li>
+        
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn-outline-info"  href="http://127.0.0.1:8000/admin">Login</a>
+          <a class="nav-link btn-outline-info"  href="admin/">Login</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-dark " type="submit">Search</button>
-      </form>
+      
     </div>
   </div>
 </nav>
@@ -153,14 +136,13 @@
 
 
 {%load static %}
-<div class="container-fluid">
+<div class="container-fluid card-body text-center">
   <div class="row my-5" >
-    <h1 class="text-center"> Our Services </h1>
-    <p class="fw-light w-50 mx-auto">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quis fuga in molestiae libero! Expedita
-      voluptate repudiandae fugit inventore recusandae.
-    </p>
   </div>
+    <h1 class="text-center "> Our Services </h1>
+    <a type="button text-center" href="/workers_page" class="btn btn-success">Labor</a>
+    <a href="/vehicals_page" type="button" class="btn btn-info mx-4">Transportation </a>
+    <a href="/machinorys_page" type="button" class="btn btn-warning">Machinary</a>
 
 </div>
 

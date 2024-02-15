@@ -1,0 +1,54 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Details {% endblock title %}
+
+{% block body %}
+
+
+
+<div class="contailer">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="/media/{{ dest.product_img}}" alt="">
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    {{dest.seller_name}}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    {{dest.product_Disc}}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    {{dest.mobile}}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    {{dest.price}}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+{% endblock body %}

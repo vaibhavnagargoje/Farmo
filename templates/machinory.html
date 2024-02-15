@@ -18,6 +18,25 @@
 
 </head>
 <body>
+    <div class="container ">
+        <div class="row mt-5 ">
+
+            <div class="col-md-8 ">
+                <form class="card card-sm">
+                    <div class="card-body row no-gytters align-items-center">
+                        <div class="col">
+                            <input type="search" name="search_name" placeholder="search product" class="form-control form-control-borderless">
+                        </div>
+
+                        <div class="col-auto">
+                            <button class="btn btn-success">Search</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div class="gallery">
 
@@ -35,7 +54,7 @@
                 <li><i class="fa fa-star checked"></i></li>
                 <li><i class="fa fa-star "></i></li>
             </ul>
-            <button class="buy-1">Call Now </button>
+            <a href="/{{dest.id}}" class="buy-1 btn ">Call Now </a>
 
         </div>
         {% endif %}
