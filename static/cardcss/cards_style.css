@@ -108,6 +108,7 @@ border-bottom-left-radius: 20px;
 }
 .buy-1{
     background: #2183a2;
+    margin-bottom: 5px;
 }
 @media(max-width:1100px){
     .product-content{

@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import seller_info
 from math import ceil
 from django.http import HttpResponse 
 from .models import destiatiion
 from django.db.models import Q
+from .forms import ContactForm
+from django.contrib import  messages
+
 # Create your views here.
 def index(request):
     # seller_data = seller_info.objects.all()
@@ -39,10 +42,24 @@ def index(request):
 def about(request):
     return render(request,"about.html")
 
-def contact_us(request):
-    return render(request,"contact_us.html")
 
-    
+
+
+
+def contact_us(request):
+
+    form =ContactForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request,"Your message has been sent.")
+        return redirect('/')        
+
+    return render(request,"contact_us.html",{'form':form})
+
+
+
+
+
 def services(request):
     return render(request,"services.html")
 
@@ -52,18 +69,6 @@ def worker_services(request):
 
 
 def index(request):
-    # seller_data = seller_info.objects.all()
-    # n=len(seller_data)
-    # print(n)
-    # print(seller_data)
-    # nSlides= n//4 + ceil((n/4)+(n//4))
-    # print(nSlides)
-
-    # parameter = { "total_slides":nSlides,'range':range(1,nSlides),'data':seller_data}
-
-    # all_data= [[seller_data, range(1,nSlides),nSlides],
-    #             [ seller_data, range(1,nSlides),nSlides]
-    #         ]
 
     all_data=[]
     prod_catgs=seller_info.objects.values("product_catg")
@@ -80,13 +85,12 @@ def index(request):
 
 
     parameter={'all_data':all_data}
-    return render( request,"index_2.html", parameter)
+    return render( request,"index.html", parameter)
 
 def about(request):
     return render(request,"about.html")
 
-def contact_us(request):
-    return render(request,"contact_us.html")
+
 
     
 def services(request):

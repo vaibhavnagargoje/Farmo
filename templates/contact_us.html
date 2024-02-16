@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -417,10 +418,11 @@
   </head>
   <body>
     <!-- navigation bar  -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success" >
-      <div class="container-fluid" style="position:sticky;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+      <div class="container-fluid">
         <a class="navbar-brand" href="/">Farmo</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -434,28 +436,22 @@
             <li class="nav-item">
               <a class="nav-link" href="/contact">Contact</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="/services" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Services
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">labour</a></li>
-                <li><a class="dropdown-item" href="#">Machinorys</a></li>
-                <!-- <li><hr class="dropdown-divider"></li> -->
-                <li><a class="dropdown-item" href="#">Veicals</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+            
           </ul>
-          {% comment %} <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-dark " type="submit">Search</button>
-          </form> {% endcomment %}
+          <li class="nav-item d-flex">
+            <a class="nav-link btn-outline-info me-2"  href="admin/">Login</a>
+          </li>
+          
         </div>
       </div>
     </nav>
+
+
+
+
+    
+
+
 
 
 
@@ -508,29 +504,50 @@
           <span class="circle one"></span>
           <span class="circle two"></span>
 
-          <form action="index.html" autocomplete="off">
-            <h3 class="title">Contact us</h3>
+
+
+
+          <form  method="POST" autocomplete="off">
+             {% csrf_token %}
+             {% comment %} {{ form }} {% endcomment %}
+
+             <h3 class="title">Contact us</h3>
+             
+             {% for feild in form %}
+
             <div class="input-container">
-              <input type="text" name="name" class="input" />
-              <label for="">Username</label>
-              <span>Username</span>
+              {{ feild.name}} : 
+              
+              {{feild}}
+
+              <label for=""></label>
+              <span>Name</span>
             </div>
+
+{% comment %} 
             <div class="input-container">
               <input type="email" name="email" class="input" />
               <label for="">Email</label>
               <span>Email</span>
             </div>
+
+
             <div class="input-container">
               <input type="tel" name="phone" class="input" />
               <label for="">Phone</label>
               <span>Phone</span>
             </div>
+
+
             <div class="input-container textarea">
               <textarea name="message" class="input"></textarea>
               <label for="">Message</label>
               <span>Message</span>
-            </div>
-            <input type="submit" value="Send" class="btn" />
+            </div> {% endcomment %}
+
+            {% endfor %}
+
+            <button type="submit"  class="btn" >Submit</button>
           </form>
         </div>
       </div>
