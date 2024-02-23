@@ -85,7 +85,7 @@ def index(request):
 
 
     parameter={'all_data':all_data}
-    return render( request,"index.html", parameter)
+    return render( request,"index_3.html", parameter)
 
 def about(request):
     return render(request,"about.html")
@@ -101,7 +101,7 @@ def worker_services(request):
     search_name= request.GET.get('search_name')
     dest_all2=dest_all
     if search_name!='' and search_name is not None:
-        dest_all = dest_all.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains=search_name)|Q(seller_name__icontains=search_name))
+        dest_all = dest_all.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains=search_name)|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
     
     else:
         pass
@@ -117,7 +117,7 @@ def machinory_services(request):
     search_name= request.GET.get('search_name')
     dest_all2=dest_all
     if search_name!='' and search_name is not None:
-        dest_all = dest_all.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains="Machinery")|Q(seller_name__icontains=search_name))
+        dest_all = dest_all.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains="Machinery")|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
         
     else:
         pass
@@ -130,7 +130,7 @@ def vehical_services(request):
     search_name= request.GET.get('search_name')
     
     if search_name!='' and search_name is not None:
-       dest_all = dest_all.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains="Vehical")|Q(seller_name__icontains=search_name))
+       dest_all = dest_all.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains="Vehical")|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
         
     else:
         pass
