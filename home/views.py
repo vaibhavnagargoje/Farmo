@@ -37,7 +37,7 @@ def index(request):
 
 
     parameter={'all_data':all_data}
-    return render( request,"index.html", parameter)
+    return render( request,"index_4.html", parameter)
 
 def about(request):
     return render(request,"about.html")
