@@ -1,3 +1,5 @@
+
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -26,7 +28,7 @@
         <div class="input-group mx-auto" style="width:700px;">
           <input type="text" class="form-control border border-2 border-dark" placeholder="Search here"
             aria-label="Search here" aria-describedby="button-addon2">
-          <button class="btn btn-dark" type="button"><i class="bi bi-search" style="color: aliceblue;"></i></button>
+          <button class="btn btn-dark" type="button"><i class="bi bi-search" style="color: aliceblue;"></i> Search </button>
         </div>
         <div class="input-group " style="width: 300px;">
           <select class="form-select border border-2 border-dark" id="inputGroupSelect01">
@@ -71,14 +73,6 @@
         <a class="nav-link" href="/contact">Contact</a>
 
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
     </ul>
   </div>
   <div class="container my-5">
@@ -88,9 +82,17 @@
       </div>
     </div>
 
+
+    
     <div class="row g-2">
+      {% for seller_data, 4, nSlides in all_data %}
+      
+  <h2 class="mt-5"> {{ seller_data.0.product_catg }} </h2>
+
+  {% for i in seller_data|slice:":4" %}
+
       <div class="card col-3 m-2" style="width: 18rem;">
-        <img src="images/combine-harvester.jpg" class="card-img-top" alt="...">
+        <img src='/media/{{i.product_img}}'  class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -101,6 +103,29 @@
           <a href="#" class="btn btn-primary">View Details</a>
         </div>
       </div>
+      
+
+
+      <div class="product-content">
+        <img src='/media/{{seller_data.0.product_img}}' alt="">
+        <h3> {{seller_data.0.product_name}}</h3>
+        <p class="seller_name">{{seller_data.0.seller_name}}</p>
+        <h6><b> &#8377; {{seller_data.0.price}}/- </b> </h6>
+        <ul>
+            <li><i class="fa fa-star checked"></i></li>
+            <li><i class="fa fa-star checked"></i></li>
+            <li><i class="fa fa-star checked"></i></li>
+            <li><i class="fa fa-star checked"></i></li>
+            <li><i class="fa fa-star "></i></li>
+        </ul>
+        <button class="buy-1">Call Now </button>
+
+    </div>
+
+
+      {% endfor %}
+
+  {% endfor %}
       <div class="card col-3 m-2" style="width: 18rem;">
         <img src="images/farming-machine.avif" class="card-img-top" alt="...">
         <div class="card-body">
@@ -113,6 +138,8 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
+
+
       <div class="card col-3 m-2" style="width: 18rem;">
         <img src="images/grass-cutter.jfif" class="card-img-top" alt="...">
         <div class="card-body">
@@ -125,6 +152,8 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
+
+
       <div class="card col-3 m-2" style="width: 18rem;">
         <img src="images/Mulching-1.webp" class="card-img-top" alt="...">
         <div class="card-body">
@@ -194,6 +223,9 @@
       </div>
     </div>
   </div>
+
+
+
   <footer>
     <div class="container-fluid bg-dark text-white py-3 ">
       <p>All rights reserved © 2024</p>

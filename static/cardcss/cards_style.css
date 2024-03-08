@@ -4,7 +4,7 @@ body{
     background: #f2f2f2;
 }
 
-h3{
+.product-content h3 {
     text-align: center;
     font-size: 30px;
     margin: 0;
@@ -44,7 +44,7 @@ background: #f2f2f2;
     transform: translate(0px, -20px);
 }
 
-    img{
+.product-content img{
         width: 200px;
         height: 150px;
         text-align: center;
@@ -52,20 +52,20 @@ background: #f2f2f2;
         display: block;
 
     }
-    p{
+    .product-content  p{
     text-align: center;
     color: #b2bec3;
     padding-top: 0 20px;
     
 
     }
-h6{
+    .product-content  h6{
     font-size: 26px;     
     text-align: center;
     color: #222f3e;
     margin: 0;
     }
-ul{
+    .product-content  ul{
     list-style: none ;
     display: flex;
     justify-content: center;
@@ -74,7 +74,7 @@ ul{
 
 }
 
-li{
+.product-content ul li{
     padding-top: 5px;
 
 }
@@ -92,10 +92,10 @@ li{
     transition: .6s;
 
 }
-button{
+.product-content  button{
     text-align: center;
     font-size: 24px;
-    color: #fff;
+    color: white ;
     width: 100%;
     padding: 15px;
     border: 0;

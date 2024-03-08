@@ -22,6 +22,7 @@ admin.site.site_header = "Farmo Dashbord"
 admin.site.site_title = "Farmo Admin Portal"
 admin.site.index_title = "Welcome Farmo Team "
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('' ,include('home.urls'))
