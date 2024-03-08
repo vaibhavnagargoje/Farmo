@@ -21,9 +21,10 @@ from home import views
 
 urlpatterns = [
     path("", views.index, name="home"),
-    path("about", views.about, name='about'),
+    path("about/", views.about, name='about'),
     path("services", views.services, name='services'),
-    path("contact", views.contact_us, name='contact'),
+    path('<int:id>/', views.detail,name="detail"),
+    path("contact/", views.contact_us, name='contact_us'),
 
 
     #services urls

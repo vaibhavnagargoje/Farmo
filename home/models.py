@@ -2,16 +2,16 @@ from django.db import models
 
 
 # Create your models here.
-class contact(models.Model):
-    No = models.AutoField
-    Name = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    phone = models.CharField(max_length=200)
-    desc = models.CharField(max_length=200)
-    send_date = models.DateField()
-    # image= models.ImageField(upload_to="home/images")  
-    def __str__(self):
-        return self.Name
+# class contact(models.Model):
+#     No = models.AutoField
+#     Name = models.CharField(max_length=50)
+#     email = models.CharField(max_length=50)
+#     phone = models.CharField(max_length=200)
+#     desc = models.CharField(max_length=200)
+#     send_date = models.DateField()
+#     # image= models.ImageField(upload_to="home/images")  
+#     def __str__(self):
+#         return self.Name
     
 
 class seller_info(models.Model):
@@ -28,8 +28,7 @@ class seller_info(models.Model):
     register_date=models.DateField()
 
     def __str__(self):
-        return self.seller_name
-    
+        return self.seller_name 
 
 
 class destiatiion:
@@ -39,8 +38,12 @@ class destiatiion:
     desc :str
     price : int 
 
-class contact(models.Model):
-    contactName= models.CharField(max_length=100)
-    contactMail= models.CharField(max_length=100)
-    contactAddress= models.CharField(max_length=100)
-    contactPhone= models.CharField(max_length=13)
+
+class Contact(models.Model):
+    Name= models.CharField(max_length=100)
+    Mail= models.CharField(max_length=100)
+    Phone= models.CharField(max_length=15)
+    Message= models.TextField()
+    
+    def __str__(self):
+        return self.Name

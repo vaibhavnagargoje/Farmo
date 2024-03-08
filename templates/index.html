@@ -1,254 +1,91 @@
-<!doctype html>
+{% extends "base.html" %}
+{% load static %}
+{% comment %} {% static 'card_img' as baseimg %} {% endcomment %}
+
+{% block title %} Workers {% endblock title %}
+
+<!-- body    -->
+{% block body %}
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my cards </title>
+    <link rel="stylesheet" href="{% static '/cardcss/cards_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <title>Hello, world!</title>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-   body {
-      font-family: 'Poppins', sans-serif;
-    } 
-
-    .container{
-      z-index: 5;
-    }
-    /* footer css */
-
-    footer {
-      height: 10vh;
-      background-color: rgb(13, 13, 14);
-      color: wheat;
-      font-fAmily: 'Roboto', sans-serif;
-    }
-
-    .flex-all-center-footer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      top: 100px ;
-    }
-
-    .text-center-footer {
-      text-align: center;
-    }
-    .col-md-3{
-          display: inline-block;
-          margin-left:-4px;
-          }
-
-
-    .carousel-indicators .active {
-      background-color: black;
-  }
-  .card-img-top{
-    width: 260px;
-    height: 260px;
-    margin: 20px;
-  }
-
-  .carousel-control-next-icon{
-    background-color: black;
-    z-index: 1;
-  }
-  .carousel-control-prev-icon{
-    background-color: black;
-    z-index: 10;
-  }
-  .carousel-control-next{
-  top: auto;
-  bottom:auto ;
-  }
-  .carousel-control-prev{
-    
-    top: auto;
-  bottom: auto;
-  }
-
-  </style>
 </head>
+<body>
 
-
-
-<!-- navbhar  -->
-<!-- navigation bar  -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-success">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">Farmo</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/contact">Contact</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/services" id="navbarDropdown" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Services
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/workers_page">Workers</a></li>
-            <li><a class="dropdown-item" href="/machinorys_page">Machinorys</a></li>
-            <!-- <li><hr class="dropdown-divider"></li> -->
-            <li><a class="dropdown-item" href="vehicals_page">Vehicals</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn-outline-info"  href="http://127.0.0.1:8000/admin">Login</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-dark " type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{%load static %}
-<div class="container-fluid">
+  {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+</ul>
+{% endif %}
+  
+<div class="container-fluid card-body text-center">
   <div class="row my-5" >
-    <h1 class="text-center"> Your Products </h1>
-    <p class="fw-light w-50 mx-auto">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quis fuga in molestiae libero! Expedita
-      voluptate repudiandae fugit inventore recusandae.
-    </p>
   </div>
+    <h1 class="text-center "> Our Services </h1>
+    <a type="button text-center" href="/workers_page" class="btn btn-success">Labor</a>
+    <a href="/vehicals_page" type="button" class="btn btn-info mx-4">Transportation </a>
+    <a href="/machinorys_page" type="button" class="btn btn-warning">Machinary</a>
 
 </div>
 
 
 
 
+    <div class="container ">
+        <div class="row mt-5 ">
 
-<!--carousel item -->
-<div class="container">
+            <div class="col-md-8 ">
+                <form class="card card-sm">
+                    <div class="card-body row no-gytters align-items-center">
+                        <div class="col">
+                            <input type="search" name="search_name" placeholder="search product" class="form-control form-control-borderless">
+                        </div>
 
-  <!--slideshow -->
-  
-  {% for seller_data, range, nSlides in all_data %}
-  <h2 class="mt-5"> {{ seller_data.0.product_catg }} </h2>
+                        <div class="col-auto">
+                            <button class="btn btn-success">Search</button>
+                        </div>
 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-<div id="demo{{forloop.counter}}" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-      <button type="button" data-bs-target="#demo{{forloop.counter}}" data-bs-slide-to="0" class="active"></button>
+    <div class="gallery">
 
-      {% for i in range %}
-    <button type="button" data-bs-target="#demo{{forloop.parentloop.counter}}" data-bs-slide-to="{{i}}"></button>
-      {% endfor %}  
-  </div>
+        {% for dest in dests %}
+        {% if dest.product_catg == "Workers" or dest.product_catg == "Labor" %}
+        <div class="product-content">
+            <img src='/media/{{dest.product_img}}' alt="">
+            <h3> {{dest.product_name}}</h3>
+            <p>{{dest.seller_name}}</p>
+            <p><b>Mo:-{{dest.mobile}}</b></p>
+            <h6>price &#8377; {{dest.price}}/-  </h6>
+            <ul>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star "></i></li>
+            </ul>
+            <!-- <button class="buy-1">Call Now </button> -->
+            <a href="/{{dest.id}}" class="buy-1 btn ">Call Now </a>
 
+        </div>
+        {% endif %}
+        {% endfor %}
 
-  <div class="carousel-inner">
-
-      <div class="carousel-item active">
-
-          
-              <div class="col-sm-3 col-md-3">
-                  <div class="card">
-                      <img src='/media/{{seller_data.0.product_img}}' class="card-img-top" alt="srk.jpg">
-                      <div class="card-body">
-                          <h5 class="card-title">{{seller_data.0.seller_name}}</h5>
-                          <p class="card-text">{{seller_data.0.product_name}}</p>
-                          <a href="#" class="btn btn-primary"> Call Now </a>
-                      </div>
-                  </div>
-              </div>
-
-              {% for i in seller_data|slice:"1:" %}
-              <div class="col-sm-2 col-md-3">
-                  <div class="card">
-                    <img src='/media/{{i.product_img}}' class="card-img-top" alt="srk.jpg">
-                      <div class="card-body">
-                          <h5 class="card-title">{{i.seller_name}}</h5>
-                          <p class="card-text">{{i.product_name}}</p>
-                          <a href="#" class="btn btn-primary">Call Now </a>
-                      </div>
-                  </div>
-              </div>
-
-              {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and not forloop.last %}
-          </div><div class="carousel-item ">
-            {% endif%}
-
-            {% endfor %}
-          </div>
-
-      </div>
-      
-</div>
-<!-- dkhasddjkasdfashfjdjfhfhkasfld -->
-
-  
-  <button type="button" class="carousel-control-prev" data-bs-target="#demo{{forloop.counter}}"
-      data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-  </button>
-  <button type="button" class="carousel-control-next"  data-bs-target="#demo{{forloop.counter}}"
-      data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-  </button>
-
-{% endfor %}
-</div> 
-
-<footer class="flex-all-center-footer">
-  <P class="text-center-footer" style="margin-bottom :0rem;">Copyright &copy; 2022 All Rights Reserved &colon; desigend
-    by Farmo Team</P>
-</footer>
-
-
-
-<!-- Optional JavaScript; choose one of the two! -->
-
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Option 2: Separate Popper and Bootstrap JS -->
-<!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-
+    </div>
+</body>
 </html>
+{% endblock body%}
+

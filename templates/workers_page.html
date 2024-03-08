@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "new-base.html" %}
 {% load static %}
 {% comment %} {% static 'card_img' as baseimg %} {% endcomment %}
 
@@ -19,6 +19,41 @@
 </head>
 <body>
 
+    
+<div class="container-fluid card-body text-center">
+    <div class="row my-5" >
+    </div>
+      <h1 class="text-center "> Our Services </h1>
+      <a type="button text-center" href="/workers_page" class="btn btn-success">Labor</a>
+      <a href="/vehicals_page" type="button" class="btn btn-info mx-4">Transportation </a>
+      <a href="/machinorys_page" type="button" class="btn btn-warning">Machinary</a>
+  
+  </div>
+  
+  
+  
+
+
+    <div class="container ">
+        <div class="row mt-5 ">
+
+            <div class="col-md-12">
+                <form class="card card-sm">
+                    <div class="card-body row no-gytters align-items-center">
+                        <div class="col">
+                            <input type="search" name="search_name" placeholder="search product" class="form-control form-control-borderless">
+                        </div>
+
+                        <div class="col-auto">
+                            <button class="btn btn-success">Search</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="gallery">
 
         {% for dest in dests %}
@@ -36,7 +71,8 @@
                 <li><i class="fa fa-star checked"></i></li>
                 <li><i class="fa fa-star "></i></li>
             </ul>
-            <button class="buy-1">Call Now </button>
+            <!-- <button class="buy-1">Call Now </button> -->
+            <a href="/{{dest.id}}" class="buy-1 btn ">Call Now </a>
 
         </div>
         {% endif %}
