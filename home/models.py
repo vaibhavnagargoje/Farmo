@@ -28,8 +28,7 @@ class seller_info(models.Model):
     register_date=models.DateField()
 
     def __str__(self):
-        return self.seller_name
-    
+        return self.seller_name 
 
 
 class destiatiion:
