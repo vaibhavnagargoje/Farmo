@@ -4,7 +4,7 @@ from math import ceil
 from django.http import HttpResponse 
 from .models import destiatiion
 from django.db.models import Q
-from .forms import ContactForm
+from .forms import ContactForm, SellerForm
 from django.contrib import  messages
 
 # Create your views here.
@@ -145,3 +145,21 @@ def detail(request,id):
     
     
     
+
+def contact_us(request):
+    
+    form =ContactForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request,"Your message has been sent.")
+        return redirect('/')        
+
+    return render(request,"contact_us.html",{'form':form})
+
+
+def Seller(request):
+    form = SellerForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/')
+    return render(request,"join-us.html",{'form':form})
