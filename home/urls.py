@@ -25,6 +25,7 @@ urlpatterns = [
     path("services", views.services, name='services'),
     path('<int:id>/', views.detail,name="detail"),
     path("contact/", views.contact_us, name='contact_us'),
+    path("join-us/",views.join_us,name="join"),
 
 
     #services urls

@@ -157,9 +157,9 @@ def contact_us(request):
     return render(request,"contact_us.html",{'form':form})
 
 
-# def Seller(request):
-#     form = SellerForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#         return redirect('/')
-#     return render(request,"join-us.html",{'form':form})
+def join_us(request):
+    # form = SellerForm(request.POST or None)
+    # if form.is_valid():
+    #     form.save()
+    #     return redirect('/')
+    return render(request,"join-us.html")
