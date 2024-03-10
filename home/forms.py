@@ -12,4 +12,4 @@ class SellerForm(forms.ModelForm):
         model = seller_info
    
     
-        fields = ['seller_name','mobile','dob','gender','address','pincode','product_name','product_catg','product_Disc','price','seller_img','product_img','register_date','status','skill']
+        fields = ['seller_name','mobile','gender','address','pincode','product_name','product_catg','product_Disc','price','seller_img','product_img','status','skill']

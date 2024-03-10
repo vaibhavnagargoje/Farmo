@@ -15,9 +15,14 @@ from datetime import datetime
     
 
 class seller_info(models.Model):
+    PRODUCTS_CHOICES = [
+        ('Worker', 'Worker'),
+        ('Machinery', 'Machinery'),
+        ('Vehicles', 'Vehicles'),
+                        ]
     seller_name = models.CharField(max_length=100)
     mobile = models.BigIntegerField()
-    dob=models.DateField()
+    
     gender=models.CharField(max_length=10)
     address= models.CharField(max_length=200)
     pincode= models.IntegerField()
@@ -27,7 +32,7 @@ class seller_info(models.Model):
     price=models.IntegerField()
     seller_img=models.ImageField(upload_to="home/images")
     product_img= models.ImageField(upload_to="home/images", default="")
-    register_date=models.DateField(datetime.now() ) 
+    # register_date=models.DateField()
     status=models.BooleanField(default=True)
     skill = models.CharField( max_length=100)
 
