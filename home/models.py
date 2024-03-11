@@ -19,11 +19,15 @@ class seller_info(models.Model):
         WORKER= 'Worker'
         MACHINERY= 'Machinery'
         VEHICLES= 'Vehicles'
+    class GenderChoies(models.TextChoices):
+        MALE='Male'
+        FEMALE='Female'
+        OTHER ='Other'
 
     seller_name = models.CharField(max_length=100)
     mobile = models.BigIntegerField()
     dob = models.DateField()
-    gender= models.CharField(max_length=6)
+    gender= models.CharField(max_length=10,choices=GenderChoies.choices)
     address= models.CharField(max_length=200)
     pincode= models.IntegerField()
     product_name= models.CharField(max_length=50)
@@ -35,6 +39,7 @@ class seller_info(models.Model):
     product_img= models.ImageField(upload_to="home/images", default="")
     register_date=models.DateField()
     status=models.BooleanField(default=False)
+    age = models.IntegerField(default=18)
 
     def __str__(self):
         return self.seller_name 
