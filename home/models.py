@@ -16,13 +16,17 @@ from django.db import models
 
 class seller_info(models.Model):
     class TypeChoices(models.TextChoices):
-        WORKER= 'Worker'
-        MACHINERY= 'Machinery'
+        WORKER= 'Workers'
+        MACHINERY= 'Machinerys'
         VEHICLES= 'Vehicles'
     class GenderChoies(models.TextChoices):
         MALE='Male'
         FEMALE='Female'
         OTHER ='Other'
+    class ChargeType(models.TextChoices):
+        HR='Hour'
+        DAY="Day"
+        KM= "Km"
 
     seller_name = models.CharField(max_length=100)
     mobile = models.BigIntegerField()
@@ -35,11 +39,13 @@ class seller_info(models.Model):
     product_Disc= models.CharField(max_length=240)
     skill = models.CharField(max_length=50)
     price=models.IntegerField()
+    charge_type=models.CharField(max_length=10,choices=ChargeType.choices,default='Day' )
     seller_img=models.ImageField(upload_to="home/images")
     product_img= models.ImageField(upload_to="home/images", default="")
     register_date=models.DateField()
     status=models.BooleanField(default=False)
     age = models.IntegerField(default=18)
+
 
     def __str__(self):
         return self.seller_name 
