@@ -170,7 +170,7 @@ def contact_us(request):
         messages.success(request,"Your message has been sent.")
         return redirect('/')        
 
-    return render(request,"contact_us.html",{'form':form})
+    return render(request,"contact.html",{'form':form})
 
 
 def join_us(request):
