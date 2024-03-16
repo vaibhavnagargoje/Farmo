@@ -46,16 +46,6 @@ def about(request):
 
 
 
-def contact_us(request):
-
-    form =ContactForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        messages.success(request,"Your message has been sent.")
-        return redirect('/')        
-
-    return render(request,"contact_us.html",{'form':form})
-
 
 
 
@@ -72,7 +62,17 @@ def index(request):
 
     all_data=[]
     prod_catgs=seller_info.objects.values("product_catg")
-    catg={item['product_catg'] for item in prod_catgs}
+
+    # 
+    search_name= request.GET.get('search_name')
+    if search_name!='' and search_name is not None:
+        prod_catgs = prod_catgs.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains="Machinery")|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
+    else:
+        pass
+    
+    catg={item['product_catg'] for item in prod_catgs}  
+
+    # 
     for cat in catg:
         product=seller_info.objects.filter(product_catg=cat)
         n=len(product)
@@ -81,11 +81,27 @@ def index(request):
 
         all_data.append([product, range(1,nSlides), nSlides])
 
-
-
-
     parameter={'all_data':all_data}
     return render( request,"index_4.html", parameter)
+
+    # serch logic 
+        
+    dest_all = seller_info.objects.all()
+    search_name= request.GET.get('search_name')
+    if search_name!='' and search_name is not None:
+        dest_all = dest_all.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains="Machinery")|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
+        
+    else:
+        pass
+    return render(request,"machinory.html",{'dests': dest_all})
+
+
+
+
+
+
+
+
 
 def about(request):
     return render(request,"about.html")
@@ -99,7 +115,7 @@ def services(request):
 def worker_services(request):
     dest_all = seller_info.objects.all()
     search_name= request.GET.get('search_name')
-    dest_all2=dest_all
+    
     if search_name!='' and search_name is not None:
         dest_all = dest_all.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains=search_name)|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
     
@@ -145,3 +161,21 @@ def detail(request,id):
     
     
     
+
+def contact_us(request):
+    
+    form =ContactForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request,"Your message has been sent.")
+        return redirect('/')        
+
+    return render(request,"contact.html",{'form':form})
+
+
+def join_us(request):
+    # form = SellerForm(request.POST or None)
+    # if form.is_valid():
+    #     form.save()
+    #     return redirect('/')
+    return render(request,"join-us.html")

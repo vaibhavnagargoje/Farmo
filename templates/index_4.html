@@ -100,9 +100,9 @@
 
       <div class="product-content">
         <img src='/media/{{i.product_img}}' alt="">
-        <h3> {{i.product_name}}</h3>
+        <h3> {{i.product_name|slice:":15"}}...</h3>
         <p class="seller_name">{{i.seller_name}}</p>
-        <h6><b> &#8377; {{i.price}}/- </b> </h6>
+        <h6><b> &#8377; {{i.price}}/{{ i.charge_type }} </b> </h6>
         <ul>
             <li><i class="fa fa-star checked"></i></li>
             <li><i class="fa fa-star checked"></i></li>

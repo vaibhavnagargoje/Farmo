@@ -1,5 +1,5 @@
 from django.db import models
-
+# from datetime import datetime
 
 # Create your models here.
 # class contact(models.Model):
@@ -15,17 +15,37 @@ from django.db import models
     
 
 class seller_info(models.Model):
+    class TypeChoices(models.TextChoices):
+        WORKER= 'Workers'
+        MACHINERY= 'Machinerys'
+        VEHICLES= 'Vehicles'
+    class GenderChoies(models.TextChoices):
+        MALE='Male'
+        FEMALE='Female'
+        OTHER ='Other'
+    class ChargeType(models.TextChoices):
+        HR='Hour'
+        DAY="Day"
+        KM= "Km"
+
     seller_name = models.CharField(max_length=100)
     mobile = models.BigIntegerField()
+    dob = models.DateField()
+    gender= models.CharField(max_length=10,choices=GenderChoies.choices)
     address= models.CharField(max_length=200)
     pincode= models.IntegerField()
     product_name= models.CharField(max_length=50)
-    product_catg= models.CharField(max_length=50)
+    product_catg= models.CharField(max_length=10, choices=TypeChoices.choices)
     product_Disc= models.CharField(max_length=240)
+    skill = models.CharField(max_length=50)
     price=models.IntegerField()
+    charge_type=models.CharField(max_length=10,choices=ChargeType.choices,default='Day' )
     seller_img=models.ImageField(upload_to="home/images")
     product_img= models.ImageField(upload_to="home/images", default="")
     register_date=models.DateField()
+    status=models.BooleanField(default=False)
+    age = models.IntegerField(default=18)
+
 
     def __str__(self):
         return self.seller_name 

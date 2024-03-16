@@ -60,7 +60,7 @@
     <div class="gallery">
 
         {% for dest in dests %}
-        {% if dest.product_catg == "Transportation Vehicle" or dest.product_catg == "Mini Truck" %}
+        {% if dest.product_catg == "Transportation Vehicle" or dest.product_catg == "Mini Truck" or dest.product_catg == "Vehicles" %}
         <div class="product-content">
             <img src='/media/{{dest.product_img}}' alt="">
             <h3> {{dest.product_name}}</h3>
