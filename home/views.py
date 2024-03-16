@@ -46,16 +46,6 @@ def about(request):
 
 
 
-def contact_us(request):
-
-    form =ContactForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        messages.success(request,"Your message has been sent.")
-        return redirect('/')        
-
-    return render(request,"contact_us.html",{'form':form})
-
 
 
 
