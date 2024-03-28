@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
     'home.apps.HomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -136,5 +137,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 # managing media 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 MEDIA_URL ='/media/'
+
+
+LOGIN_URL ='login'
+LOGOUT_URL= 'logout'
