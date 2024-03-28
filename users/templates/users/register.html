@@ -1,0 +1,19 @@
+
+
+
+{% extends "users/base.html" %}
+{% load static %}
+
+{% block bodynested %}
+
+<h1> HomePage for users app </h1>
+
+
+
+<form method="POST">
+    {% csrf_token %}
+   {{ user_form.as_p}}
+   <button type="submit">Submit</button>
+
+</form>
+{% endblock %}
