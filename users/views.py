@@ -5,6 +5,8 @@ from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from .models import  Profile
 from .forms import UserEditForm, ProfileEditForm
+
+from posts.models import Advertise
 # Create your views here.
 
 
@@ -29,9 +31,18 @@ def user_logout(request):
     logout(request)
     return render(request,'users/logout.html')
 
+
+
+
 @login_required
 def index(request):
-    return render(request,'users/index.html')
+    current_user=request.user
+    advertise = Advertise.objects.filter(user=current_user)
+
+    return render(request,'users/index.html',{'advertises':advertise})
+
+
+
 
 
 def register(request):
@@ -64,6 +75,6 @@ def edit(request):
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
-
-
+        
+    
     return render(request,'users/edit.html',{'user_form':user_form,'profile_form':profile_form})

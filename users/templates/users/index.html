@@ -4,4 +4,12 @@
 {% block bodynested %}
 
 <h1> HomePage for users app </h1>
+
+{% for advertise in advertises %}
+    <h1>{{advertise.service_name}} </h1>
+    <h2> {{advertise.price}}</h2>
+
+    <img src ="{{advertise.service_img.url}}" alt="not found"/>
+{% endfor %}
+
  {% endblock %}
