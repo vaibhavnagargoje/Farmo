@@ -5,14 +5,85 @@
 
 
 
-<h2> Edit Profile form</h2>
+<h2 class="text-2xl m-10 font-bold"> Edit Profile </h2>
 
+<div class="container py-5 mx-100">
 
-<form method="POST" enctype="multipart/form-data">  
-    {% csrf_token %}
-   {{ user_form.as_p }}
-   {{ profile_form.as_p }}
-   <button type="submit">Registor</button>
+    <form method="POST" enctype="multipart/form-data">  
+        {% csrf_token %}
 
-</form>
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="">First Name : </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{user_form.first_name}}
+            </div>
+        </div>
+        
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Last Name : </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{user_form.last_name}}
+            </div>
+        </div>
+
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Email : </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{user_form.email }}
+            </div>
+        </div>
+
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for=""> Profile Photo : </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{profile_form.photo}}
+            </div>
+        </div>
+
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Mobile : </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{profile_form.mobile}}
+            </div>
+        </div>
+
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Date Of Birth :  </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{profile_form.dob}}
+            </div>
+        </div>
+
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Gender :  </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{profile_form.gender}}
+            </div>
+        </div>
+
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Address :  </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{profile_form.address}}
+            </div>
+        </div>
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for=""> Pincode :  </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{profile_form.pincode}}
+            </div>
+        </div>
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for=""> Age :   </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{profile_form.age}}
+            </div>
+        </div>
+
+        <button type="submit" class="bg-green-500 text-white my-5 px-5 py-2">Submit </button>
+        
+        
+    </form>
+</div>
+
 {% endblock %}
