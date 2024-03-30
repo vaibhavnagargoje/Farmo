@@ -1,0 +1,18 @@
+{% extends "users/base.html" %}
+{% load static %}
+
+{% block bodynested %}
+
+
+
+<h2> Edit Profile form</h2>
+
+
+<form method="POST" enctype="multipart/form-data">  
+    {% csrf_token %}
+   {{ user_form.as_p }}
+   {{ profile_form.as_p }}
+   <button type="submit">Registor</button>
+
+</form>
+{% endblock %}

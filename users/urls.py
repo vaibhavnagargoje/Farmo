@@ -12,6 +12,7 @@ urlpatterns = [
     path('password_reset/' ,auth_view.PasswordResetView.as_view(template_name = 'users/password_reset_form.html'),name= 'password_reset' ), 
     
     
-    path('register/',views.register,name='register')
+    path('register/',views.register,name='register'),
+    path('edit/',views.edit,name='edit'),
     
     ] 

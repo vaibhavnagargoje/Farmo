@@ -9,10 +9,25 @@ class UserEditForm(forms.ModelForm):
         model= User
         fields = ('first_name','last_name', 'email')
 
+
+
+
+
+
+class DateInput(forms.DateInput):  # for Dob Input dilog box 
+    input_type = 'date'
+
 class ProfileEditForm(forms.ModelForm):
+    
     class Meta:
         model=Profile
-        fields = ('photo',)
+        fields = '__all__'
+        widgets = {
+            'dob': DateInput()
+        }
+
+
+
 
 class LoginForm(forms.Form):
     username= forms.CharField()
