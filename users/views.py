@@ -45,7 +45,7 @@ def index(request):
     advertise = Advertise.objects.filter(user=current_user)
     profile =  Profile.objects.get(user=current_user)
 
-    return render(request,'users/index.html',{'profile':profile})
+    return render(request,'users/index.html',{'profile':profile,'advertises':advertise})
 
 
 

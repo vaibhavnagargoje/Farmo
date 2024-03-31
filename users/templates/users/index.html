@@ -19,6 +19,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         /* Add custom styles here */
+        style>
+    .service-details {
+      font-size: 14px;
+    }
+    .services-photo {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .container{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+  </style>
     </style>
 </head>
 <body>
@@ -49,24 +64,57 @@
                 </div>>
             </div>
         </div>
-        <div class="row mt-4">
-            <!-- Services Photo -->
-            <div class="col-md-6">
-                <img src="https://via.placeholder.com/300" alt="Services Photo" class="img-fluid">
-            </div>
-        </div>
+        
         <!-- Action Buttons -->
-        <div class="container mt-4">
+        <div class="container mt-4 ">
             <div class="row">
                 <div class="col text-center">
-                    <button class="btn btn-primary me-3"><a href="{% url 'create' %}">Create Advertisement </a></button>
-                    <button class="btn btn-secondary me-3"><a href="{% url 'edit' %}">Edit Profile</a></button>
-                    <button class="btn btn-success me-3"><a href="{% url 'password_change' %}">Change Password</a></button>
-                    <button class="btn btn-danger"> <a href="{% url 'logout' %}">Logout</a></button>
+                    <button class="btn btn-primary me-3"><a style="text-decoration: none; color: white;" href="{% url 'create' %}">Create Advertisement </a></button>
+                    <button class="btn btn-secondary me-3"><a style="text-decoration: none; color: white;" href="{% url 'edit' %}">Edit Profile</a></button>
+                    <button class="btn btn-success me-3"><a style="text-decoration: none; color: white;" href="{% url 'password_change' %}">Change Password</a></button>
+                    <!-- <button class="btn btn-danger"> <a style="text-decoration: none; color: white;" href="{% url 'logout' %}">Logout</a></button> -->
                 </div>
             </div>
         </div>
     </div>
+
+
+
+    {% for advertise in advertises %}
+  
+    <div class="container">
+        <h3 class="row justify-content-center"> Your Services </h3>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card shadow mb-3">
+              <div class="row g-0">
+                <div class="col-md-6">
+                  <div class="card-body">
+                    <h5 class="card-title">Service Details</h5>
+                    <div class="service-details">
+                      <p><strong>Service Name:</strong> {{advertise.service_name}}</p>
+                      <p><strong>Service Date:</strong>{{advertise.price}}</p>
+                      <p><strong>Registered Date:</strong> 1st January, 2024</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="services-photo">
+                    <img src="{{ advertise.service_img.url }}" class="img-fluid" alt="Service Photo">
+                  </div>
+                </div>
+                {% if advertise.status == True %}
+                    <button class="btn btn-danger"> <a style="text-decoration: none; color: white;" href="{% url 'logout' %}">Go InActive </a></button>
+
+                   {% else %} 
+                    <button class="btn btn-success"> <a style="text-decoration: none; color: white;" href="{% url 'logout' %}">Active</a></button>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -75,13 +123,5 @@
 </html>
 
 
-
-
-{% for advertise in advertises %}
-    <h1>{{advertise.service_name}} </h1>
-    <h2> {{advertise.price}}</h2>
-
-    <img class="h-8" src ="{{advertise.service_img.url}}" alt="not found"/>
-{% endfor %}
 
  {% endblock %}

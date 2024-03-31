@@ -27,7 +27,8 @@ class Advertise(models.Model):
     
     service_img= models.ImageField(upload_to="home/images", default="")
     register_date=models.DateField(auto_now_add=True)
-    status=models.BooleanField(default=False)
+    status=models.BooleanField(default=False,)
+
     
 
 
