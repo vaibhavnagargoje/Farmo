@@ -5,6 +5,78 @@
 
 <h1> HomePage for users app </h1>
 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Add custom styles here */
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- User Photo -->
+            <div class="col-md-4">
+                <img style="height: 20rem; width: 20rem;" src ="{{ profile.photo.url }}" alt="User Photo" class="img-fluid rounded-circle mb">
+            </div>
+            <!-- User Information -->
+            <div rowspan="50" class="col-md-8">
+                <div class="card mb-1">
+                    <div class="card-header bg-primary text-white">
+                        User Details
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Name :</strong>{{profile.user.first_name}} {{profile.user.last_name}} </p>
+                        <p><strong>Location:</strong> {{profile.address}}</p>
+                        <p><strong>Email:</strong> {{profile.user.email }}</p>
+                        <p><strong>Mobile:</strong> {{profile.mobile}}</p>
+                        <p><strong>Birth Date :</strong> {{profile.dob}}</p>
+                        <p><strong>PIN Code :</strong> {{profile.pincode}}</p>
+                        <p><strong>Gender:</strong> {{profile.gender}}</p>
+                        <p><strong>Age :</strong> {{profile.age}}</p>
+                        <p><strong>Joined :</strong> {{profile.register_date}}</p>
+                        <!-- Add more user details as needed -->
+                    </div>
+                </div>>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <!-- Services Photo -->
+            <div class="col-md-6">
+                <img src="https://via.placeholder.com/300" alt="Services Photo" class="img-fluid">
+            </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col text-center">
+                    <button class="btn btn-primary me-3"><a href="{% url 'create' %}">Create Advertisement </a></button>
+                    <button class="btn btn-secondary me-3"><a href="{% url 'edit' %}">Edit Profile</a></button>
+                    <button class="btn btn-success me-3"><a href="{% url 'password_change' %}">Change Password</a></button>
+                    <button class="btn btn-danger"> <a href="{% url 'logout' %}">Logout</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
 {% for advertise in advertises %}
     <h1>{{advertise.service_name}} </h1>
     <h2> {{advertise.price}}</h2>

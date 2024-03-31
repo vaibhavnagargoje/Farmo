@@ -36,18 +36,19 @@ class LoginForm(forms.Form):
 
 class UserRegistrationForm(forms.ModelForm):
 
-    password=forms.CharField(label='Password')
-    password2=forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+    password=forms.CharField(label='Password', widget=forms.PasswordInput())
+    password2=forms.CharField(label='Confirm Password', widget=forms.PasswordInput())
 
 
 
     class Meta:
         model=User
-        fields ={'username','email' , 'first_name','last_name'}
+        fields =fields ={'username','email' , 'first_name','last_name'}
 
     def check_password(self):
-        if(self.changed_data['password']!=self.changed_data['password2']):
-            raise forms.ValidationError("Password  does not match")
+        cleaned_data = super(UserRegistrationForm, self).clean()
+        if(self.cleaned_data['password']!=self.cleaned_data['password2']):
+            raise forms.ValidationError("Password does not match")
         return self.changed_data['password2']
     
 

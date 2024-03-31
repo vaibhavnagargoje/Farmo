@@ -5,7 +5,7 @@ from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from .models import  Profile
 from .forms import UserEditForm, ProfileEditForm
-
+from django.contrib import messages
 from posts.models import Advertise
 # Create your views here.
 
@@ -18,9 +18,14 @@ def user_login(request):
             user = authenticate(request,username=data['username'],password=data['password'])
             if user is not None:
                 login(request, user)
-                return HttpResponse(" user authenticated and logged in ")
+                current_user=request.user
+                advertise = Advertise.objects.filter(user=current_user)
+                profile =  Profile.objects.get(user=current_user)
+
+                return render(request,'users/index.html',{'profile':profile})
+                # return render(request,'users/index.html')
             else:
-                return HttpResponse(" Invalid User ")
+                return HttpResponse(" Invalid Details !  ")
     else:
 
         form = LoginForm()
@@ -38,8 +43,9 @@ def user_logout(request):
 def index(request):
     current_user=request.user
     advertise = Advertise.objects.filter(user=current_user)
+    profile =  Profile.objects.get(user=current_user)
 
-    return render(request,'users/index.html',{'advertises':advertise})
+    return render(request,'users/index.html',{'profile':profile})
 
 
 
@@ -50,12 +56,16 @@ def register(request):
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
             new_user=user_form.save(commit=False)
-            new_user.set_password(user_form.cleaned_data['password2'])
-            new_user.save()
 
-            Profile.objects.create(user=new_user)
+            if(user_form.cleaned_data['password']!=user_form.cleaned_data['password2']):
+                user_form.add_error('password2', 'The passwords do not match')
+            else:
+                new_user.set_password(user_form.cleaned_data['password2'])
+                new_user.save()
 
-            return render(request,'users/register_done.html')
+                Profile.objects.create(user=new_user)
+
+                return render(request,'users/register_done.html')
 
     else:
         user_form= UserRegistrationForm()
@@ -66,11 +76,12 @@ def register(request):
 @login_required
 def edit(request):
     if (request.method=="POST"):
-        user_form =UserEditForm(instance=request.user,data=request.POST)
+        user_form =UserEditForm(instance=request.user,data=request.POST,files=request.FILES)
         profile_form= ProfileEditForm(instance=request.user.profile, data=request.POST,files=request.FILES)
         if (user_form.is_valid() and profile_form.is_valid()):
             user_form.save()
             profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
     
     else:
         user_form = UserEditForm(instance=request.user)

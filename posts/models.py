@@ -15,9 +15,6 @@ class Advertise(models.Model):
         DAY="Day"
         KM= "Km"
 
-
-
-
     user =models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     slug = models.SlugField(max_length=500,blank=True)
     
