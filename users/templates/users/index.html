@@ -3,7 +3,6 @@
 
 {% block bodynested %}
 
-<h1> HomePage for users app </h1>
 
 
 
@@ -24,20 +23,32 @@
       font-size: 14px;
     }
     .services-photo {
-      max-height: 200px;
+      
+      height: 200px;
       overflow-y: auto;
       margin-top: 10px;
       margin-bottom: 10px;
+
     }
     .container{
         margin-top: 20px;
         margin-bottom: 20px;
+    }
+    .advertise-image{
+      height: 12rem;
+      margin-left: 2rem;
+      
+
+
     }
   </style>
     </style>
 </head>
 <body>
     <div class="container mt-5">
+      <div class="row justify-content-center ">
+        <h2 class=" row justify-content-center mb-10"> Profile </h2> 
+      </div>
         <div class="row">
             <!-- User Photo -->
             <div class="col-md-4">
@@ -99,8 +110,8 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="services-photo">
-                    <img src="{{ advertise.service_img.url }}" class="img-fluid" alt="Service Photo">
+                  <div class="services-photo col-md-12">
+                    <img  src="{{ advertise.service_img.url }}" class="img-fluid advertise-image" alt="Service Photo">
                   </div>
                 </div>
                 {% if advertise.status == True %}

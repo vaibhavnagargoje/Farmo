@@ -45,12 +45,21 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position:relative;
+      left: 0;
+      bottom: -270px;
+      width: 100%;
+
+      
     }
     .text-center-footer{
       text-align: center;
     }
     .navbar{
       font-fAmily: 'Poppins', sans-serif;
+    }
+    body{
+      min-height: 100vh;
     }
   </style>
 
@@ -148,7 +157,25 @@
   </div>
 
 
+  <div class="container">
+
+    
+{% if messages %}
+
+ 
+<div class="alert alert-success alert-dismissible" role="alert">
+ 
   
+  <ul class="messages">
+    {% for message in messages %}
+    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+
+  </div>
 
   
 
@@ -198,7 +225,7 @@
 
 
 
-<footer class=" flex-all-center-footer">
+<footer class=" flex-all-center-footer footer">
     <P class="text-center-footer" style="margin-bottom :0rem;">Copyright &copy; 2022 All Rights Reserved &colon; desigend by Farmo Team</P>
 </footer>
     

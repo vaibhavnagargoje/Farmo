@@ -72,7 +72,13 @@
                 <li><i class="fa fa-star "></i></li>
             </ul>
             <!-- <button class="buy-1">Call Now </button> -->
-            <a href="/{{dest.id}}" class="buy-1 btn ">Call Now </a>
+            {% comment %} <a href="/{{dest.id}}" class="buy-1 btn ">Call Now </a> {% endcomment %}
+
+            <button class="buy-1">
+                <a href="/{{dest.id}}">
+                  View Detail
+                 </a>
+                </button> 
 
         </div>
         {% endif %}

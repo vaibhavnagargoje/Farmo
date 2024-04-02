@@ -13,6 +13,6 @@ urlpatterns = [
     
     
     path('register/',views.register,name='register'),
-    path('edit/',views.edit,name='edit'),
+    path('edit/',views.edit_2,name='edit'),
     
     ] 

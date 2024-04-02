@@ -1,6 +1,8 @@
 {% extends "users/base.html" %}
 {% load static %}
 
+{% block title %} edit profile{% endblock title %}
+
 {% block bodynested %}
 
 
@@ -10,9 +12,27 @@
 <div class="container py-5 mx-100">
 
 
-    
-    <form method="POST" enctype="multipart/form-data">  
+    <div class="error-container text-red-500 font-bold px-10">
+        {% if user_form.errors %}
+            {% for field in user_form %}
+            {{field.errors}}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <form method="post" enctype="multipart/form-data">  
+                       
+        
         {% csrf_token %}
+
+
+        <div class="error-container text-red-500 font-bold px-10">
+            {% if user_form.errors %}
+                {% for field in user_form %}
+                {{field.errors}}
+                {% endfor %}
+            {% endif %}
+        </div>
 
         <div class="mb-10">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="">First Name : </label>
@@ -21,12 +41,15 @@
             </div>
         </div>
         
-        <div class="mb-10">
+
+
+        <div class="mb-2">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="">Last Name : </label>
             <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
                 {{user_form.last_name}}
             </div>
         </div>
+
 
         <div class="mb-10">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="">Email : </label>
@@ -82,7 +105,7 @@
             </div>
         </div>
 
-        <button type="submit" class="bg-green-500 text-white my-5 px-5 py-2">Submit </button>
+        <button type="submit"  class="bg-green-500 text-white my-5 px-5 py-2">Submit </button>
         
         
     </form>

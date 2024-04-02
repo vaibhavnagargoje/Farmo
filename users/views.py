@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.contrib.auth import authenticate,login,logout
 from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
@@ -25,7 +25,11 @@ def user_login(request):
                 return render(request,'users/index.html',{'profile':profile})
                 # return render(request,'users/index.html')
             else:
-                return HttpResponse(" Invalid Details !  ")
+                messages.success(request,"Invalid Detail ! ")
+                
+                return redirect("users/login.html")
+
+
     else:
 
         form = LoginForm()
@@ -64,8 +68,15 @@ def register(request):
                 new_user.save()
 
                 Profile.objects.create(user=new_user)
+                messages.success(request,"Registration Successful..")
+            
+                # return render(request,"index_4.html")
+            return redirect('/users')
 
-                return render(request,'users/register_done.html')
+
+
+
+
 
     else:
         user_form= UserRegistrationForm()
@@ -76,7 +87,7 @@ def register(request):
 @login_required
 def edit(request):
     if (request.method=="POST"):
-        user_form =UserEditForm(instance=request.user,data=request.POST,files=request.FILES)
+        user_form =UserEditForm(instance=request.user,data=request.POST)
         profile_form= ProfileEditForm(instance=request.user.profile, data=request.POST,files=request.FILES)
         if (user_form.is_valid() and profile_form.is_valid()):
             user_form.save()
@@ -89,3 +100,36 @@ def edit(request):
         
     
     return render(request,'users/edit.html',{'user_form':user_form,'profile_form':profile_form})
+
+
+
+
+
+
+@login_required
+def edit_2(request):
+    if request.method=='POST':
+        user_form =UserEditForm(instance=request.user,data=request.POST)
+        profile_form= ProfileEditForm(instance=request.user.profile, data=request.POST,files=request.FILES)
+        print("edit successfull 1")
+        if user_form.is_valid() and profile_form.is_valid():
+            print("edit successfull 1-1")
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect('/users')
+
+    
+    else:
+        user_form = UserEditForm(instance=request.user)
+        profile_form = ProfileEditForm(instance=request.user.profile)
+        print("edit successfull 2")
+        
+    
+    print("edit successfull 3")
+    return render(request,'users/edit.html',{'user_form':user_form,'profile_form':profile_form})
+
+
+@login_required
+def delete(request):
+    user_form =UserEditForm(instance=request.user,data=request.POST)

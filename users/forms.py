@@ -8,6 +8,8 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model= User
         fields = ('first_name','last_name', 'email')
+        # fields = '__all__'
+        
 
 
 
@@ -22,6 +24,7 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model=Profile
         fields = '__all__'
+        fields = ('photo','mobile','dob','gender','address','pincode','age')
         widgets = {
             'dob': DateInput()
         }
