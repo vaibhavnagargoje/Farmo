@@ -1,0 +1,16 @@
+{
+  "name": "farmo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build":"tailwind build static/tw_css/tw.css -o static/tw_css/tw_style.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^2.2.16"
+  }
+}

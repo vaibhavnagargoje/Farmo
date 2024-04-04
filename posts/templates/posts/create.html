@@ -1,0 +1,77 @@
+
+
+
+{% extends "users/base.html" %}
+{% load static %}
+
+{% block bodynested %}
+
+<div class="container py-5 mx-100">
+
+    <div class="error-container text-red-500 font-bold px-10">
+      
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">  
+        {% csrf_token %}
+
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for=""> Name of Service : </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{form.service_name}}
+            </div>
+        </div>
+        
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for=""> Category/ Type : </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{form.service_catg}}
+            </div>
+        </div>
+
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for=""> Discription (if possible ) </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{form.service_disc}}
+            </div>
+        </div>
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for=""> Skills : </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{form.skill}}
+            </div>
+        </div>
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for=""> Your Charges (Price) : </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{form.price}}
+            </div>
+        </div>
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for=""> Charges Type : </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{form.charge_type}}
+            </div>
+        </div>
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for=""> Service Image  : </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{form.service_img}}
+            </div>
+        </div>
+        <div class="mb-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for=""> Status (Active/ InActive ) : </label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+                {{form.status}}
+            </div>
+        </div>
+
+       
+
+        <button type="submit" class="bg-green-500 text-white my-5 px-5 py-2">Submit </button>
+        
+        
+    </form>
+</div>
+
+{% endblock %}

@@ -36,8 +36,7 @@
       <div class="services-list">
         <div> 
           <a href="/workers_page">
-            <i class="fa-solid fa-person-digging"></i>
-              <h2>Workers  </h2>
+            <i class="fa-solid fa-person-digging"></i>              <h2>Workers  </h2>
               <p>Good Workers</p>
               <a href="#">Learn more</a>
             </a>
@@ -99,7 +98,26 @@
 
 
       <div class="product-content">
-        <img src='/media/{{i.product_img}}' alt="">
+
+
+        <div class="row mt-3 mb-3">
+          <div class="col-10 mt-3">
+            <img  class="rounded" src='/media/{{i.product_img}}' alt="">
+            
+          </div>
+          <div class="col-2" >
+              {% if i.status == True %}
+            
+                <img class="w-2 h-2" style=" height: 35px;" src="/media/available.png" alt="">
+            
+            {% else %}
+            <img style=" height: 35px;" src="/media/unavailable.png" alt="">
+            {% endif %}
+            
+          </div>
+         </div>
+        
+
         <h3> {{i.product_name|slice:":15"}}...</h3>
         <p class="seller_name">{{i.seller_name}}</p>
         <h6><b> &#8377; {{i.price}}/{{ i.charge_type }} </b> </h6>
@@ -110,7 +128,13 @@
             <li><i class="fa fa-star checked"></i></li>
             <li><i class="fa fa-star "></i></li>
         </ul>
-        <button class="buy-1">Call Now </button>
+        
+       <button type="submit" class="buy-1">
+        <a href="/{{i.id}}">
+           Call Now
+          </a>
+        </button>
+    
 
     </div>
 

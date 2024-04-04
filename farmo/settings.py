@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
+    'posts',
     'home.apps.HomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -82,6 +84,22 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# DATABASES = {  
+#     'default': {  
+#         'ENGINE': 'django.db.backends.mysql',  
+#         'NAME': 'farmo',  
+#         'USER': 'root',  
+#         'PASSWORD': '8806',  
+#         'HOST': '127.0.0.1',  
+#         'PORT': '3306',  
+#          'OPTIONS': {  
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+#         }  
+        
+#     }  
+# }  
 
 
 # Password validation
@@ -136,5 +154,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 # managing media 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 MEDIA_URL ='/media/'
+
+
+LOGIN_URL ='login'
+LOGOUT_URL= 'logout'

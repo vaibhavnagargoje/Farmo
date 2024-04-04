@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{% static 'tw_css/tw_style.css' %}">
+<link rel="stylesheet" href="{% static 'tw_css/style.css' %}">
 
     <link rel="stylesheet" href="{% static '/cardcss/cards_style.css' %}">
     <link rel="stylesheet" href="{% static '/cardcss/services.css' %}">
@@ -43,6 +45,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position:relative;
+      left: 0;
+      bottom: -270px;
+      width: 100%;
+
+      
     }
     .text-center-footer{
       text-align: center;
@@ -50,8 +58,14 @@
     .navbar{
       font-fAmily: 'Poppins', sans-serif;
     }
+    body{
+      min-height: 100vh;
+    }
   </style>
 
+  {% block nestedhead %}
+
+  {% endblock nestedhead %}
 
 </head>
 
@@ -86,7 +100,7 @@
           </select>
         </div>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown mt-2 ml-4">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Language
             </a>
@@ -94,12 +108,31 @@
               <li><a class="dropdown-item" href="#">English</a></li>
               <li><a class="dropdown-item" href="#">Marathi</a></li>
             </ul>
-          <li class="nav-item ms-3">
-            <a class="nav-link" href="admin/"><u>Login</u></a>
+
+
+            <li class="nav-item ms-3 mt-3">
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            {% comment %} <a class="nav-link" href="admin/"><u>Login</u></a> {% endcomment %}
+            {% endif %}
           </li>
+          
+
+
+            <li class="nav-item ms-3 mt-2">
+            {% if request.user.is_authenticated %}
+            <a class="btn btn-md rounded-pill border border-success border-5 ms-3" href="{%url 'index' %}"
+            style="width: 100px;"> Profile  </a>
+            {% else %}
+            <a class="btn btn-md rounded-pill border border-success border-5 ms-3" href="{%url 'register' %}"
+            style="width: 100px;"> Join Us  </a>
+            {% endif %}
           </li>
-          <a class="btn btn-md rounded-pill border border-success border-5 ms-3" href="join-us/"
-            style="width: 100px;"> Join  </a>
+          
+
+
         </ul>
       </div>
 
@@ -124,7 +157,25 @@
   </div>
 
 
+  <div class="container">
+
+    
+{% if messages %}
+
+ 
+<div class="alert alert-success alert-dismissible" role="alert">
+ 
   
+  <ul class="messages">
+    {% for message in messages %}
+    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+
+  </div>
 
   
 
@@ -174,7 +225,7 @@
 
 
 
-<footer class=" flex-all-center-footer">
+<footer class=" flex-all-center-footer footer">
     <P class="text-center-footer" style="margin-bottom :0rem;">Copyright &copy; 2022 All Rights Reserved &colon; desigend by Farmo Team</P>
 </footer>
     

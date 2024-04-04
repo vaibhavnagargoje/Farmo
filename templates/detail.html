@@ -44,36 +44,61 @@
         <div class="col-md-6">
             <div class="d-flex flex-row">
 
-                <h2 class="mb-4">{{ dest.seller_name }} :</h2> 
-                <h2 class="mb-4 text-info"> {{dest.product_name}}</h2>
+                <h2 class="mb-4 fs-2">{{ dest.seller_name }} :</h2> 
+                
+                <h2 class="mb-4 text- fs-2"> {{dest.product_name}}</h2>
             </div>
-            <p class="lead">{{ dest.product_Disc}}</p>
-            <p><strong>Price:</strong> &#8377; {{dest.price}}/{{dest.charge_type}}</p>
-            <p><strong>Category:</strong> {{dest.product_catg}}</p>
-            <p><strong>Availability:</strong> 
-            {% if dest.status == True %}
-            <i class="fa-solid fa-circle-check"></i>
-            {% else %}
-            <i class="fa-solid fa-circle-xmark"></i>
-            {% endif %}
             
-            </p>
+            <p class="lead">{{ dest.product_Disc}}</p>
+            <br>
+            <p><strong>Price:</strong> &#8377; {{dest.price}}/{{dest.charge_type}}</p>
+<br>
+            <p><strong>Category:</strong> {{dest.product_catg}}</p>
+
+            <div class="container">
+                <div class="row mt-3 mb-3">
+                  <div class="col-3 mt-3">
+                      <p><strong>Availability:</strong> </p>
+                    
+                  </div>
+                  <div class="col-3">
+                      {% if dest.status == True %}
+                    
+
+                    
+        
+                        <img  src="/media/available.png" alt="">
+                    
+                    {% else %}
+                    <img src="/media/unavailable.png" alt="">
+                    {% endif %}
+                    
+                  </div>
+            </div>
+            
             <hr>
-            <div class="d-flex justify-content-between">
-                <button class="btn btn-primary">Book Now</button>
-                <button class="btn btn-outline-secondary" onclick="openPhoneDialer('{{ dest.mobile }}')"><i class="fas fa-phone"></i> Call Now</button>
+            <div class="d-flex justify-content-between mt-3 mb-3">
+                <button onclick="{getDetail()}" class="btn btn-primary">Book Now</button>
+                <button class="btn btn-outline-success" onclick="openPhoneDialer('{{ dest.mobile }}')"><i class="fas fa-phone"></i> Call Now</button>
             </div>
             <hr>
             <div class="mb-3">
                 <p><strong>Name:</strong>  {{dest.seller_name}}</p>
+                <br>
                 <p><strong>Mobile:</strong>  {{dest.mobile}}</p>
+                <br>
                 <p><strong>Charges:</strong>  {{dest.charge_type}}</p>
+                <br>
                 <p><strong>Category:</strong>  {{dest.product_catg}}</p>
-                <p><strong>Gender:</strong>  {{dest.gender}} </p>
+                <br>
+                <!-- <p><strong>Gender:</strong>  {{dest.gender}} </p>
+                <br> -->
                 
                 <p><strong>Pincode:</strong> {{dest.pincode}} </p>
+                <br>
                 <p><strong>Address:</strong>  {{dest.address}} </p>
-                <p><strong>Date of Birth:</strong>  {{dest.age}} </p>
+                <br>
+                <!-- <p><strong>Date of Birth:</strong>  {{dest.age}} </p> -->
                 <p><strong>Skill:</strong> {{dest.skill}}</p>
             </div>
         </div>
@@ -84,6 +109,10 @@
     function openPhoneDialer(phoneNumber) {
         window.location.href = 'tel:' + phoneNumber;
     }
+
+    function getDetail(){
+        window.alert("Sorry !  This feature is not available yet.");
+    };
 </script>
 
 {% endblock body %}

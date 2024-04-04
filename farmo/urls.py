@@ -24,8 +24,10 @@ admin.site.index_title = "Welcome Farmo Team "
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('' ,include('home.urls'))
+    path('admin/', admin.site.urls,name='admin'),
+    path('' ,include('home.urls')),
+    path('users/' ,include('users.urls')),
+    path('posts/', include('posts.urls')),
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

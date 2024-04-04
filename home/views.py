@@ -66,10 +66,10 @@ def index(request):
     # 
     search_name= request.GET.get('search_name')
     if search_name!='' and search_name is not None:
-        prod_catgs = prod_catgs.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains="Machinery")|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
+        prod_catgs = prod_catgs.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains=search_name)|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
+    
     else:
         pass
-    
     catg={item['product_catg'] for item in prod_catgs}  
 
     # 
