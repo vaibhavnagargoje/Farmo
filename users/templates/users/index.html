@@ -48,6 +48,22 @@
     <div class="container mt-5">
       <div class="row justify-content-center ">
         <h2 class=" row justify-content-center mb-10"> Profile </h2> 
+        {% if request.user.is_superuser %}
+
+
+        <div class="row mb-3">
+          <div class="col-7 text-right">
+            <h4>Your Are a Super User Of Farmo </h4>
+          </div>
+          <div class="col text-right col-4">
+              <button class="btn btn-danger me-3"><a style="text-decoration: none; color: white;" href="{% url "admin:index" %}  "> Admin Panal </a></button>
+              
+          </div>
+      </div>
+
+
+
+{% endif %}
       </div>
         <div class="row">
             <!-- User Photo -->
