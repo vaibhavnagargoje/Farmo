@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_view
 urlpatterns = [
     
     path('',views.index,name='index'),
-    path('login/',views.user_login,name='login'),
+    path('login/',views.user_login, name='login'),
     path('logout/',views.user_logout,name="logout"),             # path('logout/', auth_view.LogoutView.as_view(template_name='users/logout.html')),
 
     path("password_change/",auth_view.PasswordChangeView.as_view(template_name='users/password_change_form.html'),name='password_change'),

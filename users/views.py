@@ -27,7 +27,8 @@ def user_login(request):
             else:
                 messages.success(request,"Invalid Detail ! ")
                 
-                return redirect("users/login.html")
+                
+                return redirect('login')
 
 
     else:
@@ -61,16 +62,14 @@ def register(request):
         if user_form.is_valid():
             new_user=user_form.save(commit=False)
 
-            if(user_form.cleaned_data['password']!=user_form.cleaned_data['password2']):
-                user_form.add_error('password2', 'The passwords do not match')
-            else:
-                new_user.set_password(user_form.cleaned_data['password2'])
-                new_user.save()
-
-                Profile.objects.create(user=new_user)
-                messages.success(request,"Registration Successful..")
+           
+        
+            new_user.set_password(user_form.cleaned_data['password2'])
+            new_user.save()
+            Profile.objects.create(user=new_user)
+            messages.success(request,"Registration Successful..")
             
-                # return render(request,"index_4.html")
+            # return render(request,"index_4.html")
             return redirect('/users')
 
 
@@ -113,6 +112,7 @@ def edit_2(request):
         profile_form= ProfileEditForm(instance=request.user.profile, data=request.POST,files=request.FILES)
         print("edit successfull 1")
         if user_form.is_valid() and profile_form.is_valid():
+            
             print("edit successfull 1-1")
             user_form.save()
             profile_form.save()

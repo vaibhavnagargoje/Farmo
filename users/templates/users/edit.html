@@ -7,10 +7,18 @@
 
 
 
-<h2 class="text-2xl m-10 font-bold"> Edit Profile </h2>
+<h2 class="text-2xl m-10 font-bold"> Edit Profile sD </h2>
 
 <div class="container py-5 mx-100">
-
+    
+    <div class="error-container text-red-500 font-bold px-10">
+        {% if profile_form.errors  %}
+            {% for field in profile_form %}
+            {{field.errors}}
+            {% endfor %}
+        {% endif %}
+    </div>
+    
 
     <div class="error-container text-red-500 font-bold px-10">
         {% if user_form.errors %}

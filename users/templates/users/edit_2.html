@@ -4,12 +4,20 @@
 {% block bodynested %}
 
 
-<h1 class="text-2xl m-10"> Edit here </h1>
+<h1 class="text-2xl m-10"> Edit heresfsdf </h1>
 
+<h1> sasdf</h1>
 <div class="container py-5">
 
     <div class="error-container text-red-500 font-bold px-10">
-        {% if user_form.errors %}
+        {% if profile_form.errors s %}
+            {% for field in profile_form %}
+            {{field.errors}}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="error-container text-red-500 font-bold px-10">
+        {% if r  user_form.errors %}
             {% for field in user_form %}
             {{field.errors}}
             {% endfor %}
