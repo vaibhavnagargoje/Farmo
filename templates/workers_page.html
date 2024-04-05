@@ -57,11 +57,13 @@
     <div class="gallery">
 
         {% for dest in dests %}
-        {% if dest.product_catg == "Workers" or dest.product_catg == "Labor" %}
+        {% if dest.service_catg == "Workers" or dest.service_catg == "Labor" %}
+
         <div class="product-content">
             <div class="row mt-3 mb-3">
                 <div class="col-10 mt-3">
-                  <img  class="rounded" src='/media/{{dest.product_img}}' alt="">
+                  <img  class="rounded" src='/media/{{dest.service_img}}' alt="">
+                  {% comment %} <img  class="rounded" src='/media/{{dest.user.profile.photo}}' alt=""> {% endcomment %}
                   
                 </div>
                 <div class="col-2" >
@@ -75,10 +77,11 @@
                   
                 </div>
                </div>
-            <h3> {{dest.product_name}}</h3>
-            <p>{{dest.seller_name}}</p>
-            <p><b>Mo:-{{dest.mobile}}</b></p>
-            <h6>price &#8377; {{dest.price}}/-  </h6>
+            <h3> {{dest.service_name}}</h3>
+            <p>{{dest.user.first_name}} {{dest.user.last_name}}</p>
+            <p><b>Mo:-{{dest.user.profile.mobile}}</b></p>
+
+            <h6>price &#8377; {{dest.price}}/{{dest.charge_type}}  </h6>
             <ul>
                 <li><i class="fa fa-star checked"></i></li>
                 <li><i class="fa fa-star checked"></i></li>
@@ -86,15 +89,12 @@
                 <li><i class="fa fa-star checked"></i></li>
                 <li><i class="fa fa-star "></i></li>
             </ul>
-            <!-- <button class="buy-1">Call Now </button> -->
-            {% comment %} <a href="/{{dest.id}}" class="buy-1 btn ">Call Now </a> {% endcomment %}
-
+            {% comment %} <button class="buy-1">Call Now </button> {% endcomment %}
             <button class="buy-1">
                 <a href="/{{dest.id}}">
                   View Detail
                  </a>
                 </button> 
-
         </div>
         {% endif %}
         {% endfor %}

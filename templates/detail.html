@@ -21,12 +21,12 @@
     <div class="row">
         <div class="col-md-6">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
+                <div  class="carousel-inner rounded">
                     <div class="carousel-item active">
-                        <img src="/media/{{ dest.product_img}}" class="d-block w-100" alt="Product Image 1">
+                        <img src="/media/{{ dest.service_img}}" class="d-block w-100" alt="Product Image 1">
                     </div>
                     <div class="carousel-item">
-                        <img src="/media/{{ dest.product_img}}"
+                        <img src="/media/{{ dest.service_img}}"
                         class="d-block w-100" alt="Product Image 2">
                     </div>
                     <!-- Add more carousel items as needed -->
@@ -44,16 +44,16 @@
         <div class="col-md-6">
             <div class="d-flex flex-row">
 
-                <h2 class="mb-4 fs-2">{{ dest.seller_name }} :</h2> 
+                <h2 class="mb-4 fs-2">{{dest.user.first_name}} {{dest.user.last_name}} :</h2> 
                 
-                <h2 class="mb-4 text- fs-2"> {{dest.product_name}}</h2>
+                <h2 class="mb-4 text- fs-2"> {{dest.service_name}}</h2>
             </div>
             
-            <p class="lead">{{ dest.product_Disc}}</p>
+            <p class="lead">{{ dest.service_disc}}</p>
             <br>
             <p><strong>Price:</strong> &#8377; {{dest.price}}/{{dest.charge_type}}</p>
 <br>
-            <p><strong>Category:</strong> {{dest.product_catg}}</p>
+            <p><strong>Category:</strong> {{dest.service_catg}}</p>
 
             <div class="container">
                 <div class="row mt-3 mb-3">
@@ -79,24 +79,24 @@
             <hr>
             <div class="d-flex justify-content-between mt-3 mb-3">
                 <button onclick="{getDetail()}" class="btn btn-primary">Book Now</button>
-                <button class="btn btn-outline-success" onclick="openPhoneDialer('{{ dest.mobile }}')"><i class="fas fa-phone"></i> Call Now</button>
+                <button class="btn btn-outline-success" onclick="openPhoneDialer('{{ dest.user.profile.mobile }}')"><i class="fas fa-phone"></i> Call Now</button>
             </div>
             <hr>
             <div class="mb-3">
-                <p><strong>Name:</strong>  {{dest.seller_name}}</p>
+                <p><strong>Name:</strong>  {{dest.user.first_name}} {{dest.user.last_name}}</p>
                 <br>
-                <p><strong>Mobile:</strong>  {{dest.mobile}}</p>
+                <p><strong>Mobile:</strong>  {{dest.user.profile.mobile}}</p>
                 <br>
                 <p><strong>Charges:</strong>  {{dest.charge_type}}</p>
                 <br>
-                <p><strong>Category:</strong>  {{dest.product_catg}}</p>
-                <br>
+                
+                
                 <!-- <p><strong>Gender:</strong>  {{dest.gender}} </p>
                 <br> -->
                 
-                <p><strong>Pincode:</strong> {{dest.pincode}} </p>
+                <p><strong>Pincode:</strong> {{dest.user.profile.pincode}} </p>
                 <br>
-                <p><strong>Address:</strong>  {{dest.address}} </p>
+                <p><strong>Address:</strong>  {{dest.user.profile.address}} </p>
                 <br>
                 <!-- <p><strong>Date of Birth:</strong>  {{dest.age}} </p> -->
                 <p><strong>Skill:</strong> {{dest.skill}}</p>

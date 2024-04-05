@@ -31,7 +31,8 @@ urlpatterns = [
     #services urls
     path("workers_page", views.worker_services, name="wokers"),
     path("machinorys_page", views.machinory_services, name="machinory"),
-    path("vehicals_page", views.vehical_services, name="vehicals")
+    # path("vehicals_page", views.vehical_services, name="vehicals")
+    path("vehicals_page", views.testvehi, name="vehi")
 
 
     

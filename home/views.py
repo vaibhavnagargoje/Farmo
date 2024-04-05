@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import seller_info
+from users.models import Profile
+from posts.models import Advertise
 from math import ceil
 from django.http import HttpResponse 
 from .models import destiatiion
@@ -113,34 +115,74 @@ def services(request):
     return render(request,"services.html")
 
 def worker_services(request):
-    dest_all = seller_info.objects.all()
+
+    # #old seller workr page logic 
+    # dest_all = seller_info.objects.all()
+    # search_name= request.GET.get('search_name')
+    
+    # if search_name!='' and search_name is not None:
+    #     dest_all = dest_all.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains=search_name)|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
+    
+    # else:
+    #     pass
+    # return render(request,"workers_page.html",{'dests': dest_all})
+
+
+    dest_all = Advertise.objects.all()
+
+
     search_name= request.GET.get('search_name')
     
     if search_name!='' and search_name is not None:
-        dest_all = dest_all.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains=search_name)|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
-    
+       dest_all = dest_all.filter(Q(service_catg__icontains="worker")|Q(service_catg__icontains=search_name)|Q(service_name__icontains=search_name)|Q(skill__icontains=search_name))
+        
     else:
         pass
-    return render(request,"workers_page.html",{'dests': dest_all})
+    
 
+
+    return render(request,"workers_page.html",{'dests': dest_all})
+    
+    return render(request,'testvehi.html',{'dests':dest_all})
 
 
 
     
 
 def machinory_services(request):
-    dest_all = seller_info.objects.all()
+
+    # ## old logic for seller table 
+    # dest_all = seller_info.objects.all()
+    # search_name= request.GET.get('search_name')
+    
+    # if search_name!='' and search_name is not None:
+    #    dest_all = dest_all.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains="machinory")|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
+        
+    # else:
+    #     pass
+    # return render(request,"machinory.html",{'dests': dest_all})
+
+
+    dest_all = Advertise.objects.all()
+
+
     search_name= request.GET.get('search_name')
     
     if search_name!='' and search_name is not None:
-       dest_all = dest_all.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains="machinory")|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
+       dest_all = dest_all.filter(Q(service_catg__icontains="machinory")|Q(service_catg__icontains=search_name)|Q(service_name__icontains=search_name)|Q(skill__icontains=search_name))
         
     else:
         pass
+    
+
+
+    
     return render(request,"machinory.html",{'dests': dest_all})
 
     # return render(request,"machinory.html")
 
+
+#old seller info table 
 def vehical_services(request):
     dest_all = seller_info.objects.all()
     search_name= request.GET.get('search_name')
@@ -154,11 +196,24 @@ def vehical_services(request):
 
 
 
+
+  
+
+
+
 def detail(request,id):
-    dest_all= seller_info.objects.get(id=id)
-    return render(request,"detail.html",{'dest':dest_all})
+    ## seler info tabel data 
+    # dest_all= seller_info.objects.get(id=id)
+    # return render(request,"detail.html",{'dest':dest_all})
+
+    # Advertise tabel data 
+    dests = Advertise.objects.get(id=id)
+    print(dests)
+    return render(request,'detail.html',{'dest':dests})
 
     
+
+
     
     
 
@@ -179,3 +234,27 @@ def join_us(request):
     #     form.save()
     #     return redirect('/')
     return render(request,"join-us.html")
+
+
+
+
+
+
+
+def testvehi(request):
+    
+    dest_all = Advertise.objects.all()
+
+
+    search_name= request.GET.get('search_name')
+    
+    if search_name!='' and search_name is not None:
+       dest_all = dest_all.filter(Q(service_catg__icontains="Vehical")|Q(service_catg__icontains=search_name)|Q(service_name__icontains=search_name)|Q(skill__icontains=search_name))
+        
+    else:
+        pass
+    
+
+
+    
+    return render(request,'testvehi.html',{'dests':dest_all})
