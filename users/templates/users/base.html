@@ -10,7 +10,7 @@
     
     {% block body %}
     
-    {% comment %} {% if request.user.is_authenticated %}
+    {% comment %} {% if   . request.user.is_authenticated %}
     <a href="{% url 'logout' %}">Logout</a>
     {% else %}
     <a href="{% url 'login' %}">Login</a>
