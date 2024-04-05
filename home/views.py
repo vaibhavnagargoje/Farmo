@@ -81,7 +81,7 @@ def index(request):
     #
     search_name= request.GET.get('search_name')
     if search_name!='' and search_name is not None:
-        prod_catgs = prod_catgs.filter(Q(service_catg__icontains=search_name)| Q(service_name__icontains=search_name)|Q(service_catg__icontains=search_name)|Q(service_skill__icontains=search_name))
+        prod_catgs = prod_catgs.filter(Q(service_catg__icontains=search_name)| Q(service_name__icontains=search_name)|Q(service_catg__icontains=search_name)|Q(skill__icontains=search_name))
     
     else:
         pass
