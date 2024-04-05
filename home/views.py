@@ -10,39 +10,39 @@ from .forms import ContactForm
 from django.contrib import  messages
 
 # Create your views here.
-def index(request):
-    # seller_data = seller_info.objects.all()
-    # n=len(seller_data)
-    # print(n)
-    # print(seller_data)
-    # nSlides= n//4 + ceil((n/4)+(n//4))
-    # print(nSlides)
+# def index(request):
+#     # seller_data = seller_info.objects.all()
+#     # n=len(seller_data)
+#     # print(n)
+#     # print(seller_data)
+#     # nSlides= n//4 + ceil((n/4)+(n//4))
+#     # print(nSlides)
 
-    # parameter = { "total_slides":nSlides,'range':range(1,nSlides),'data':seller_data}
+#     # parameter = { "total_slides":nSlides,'range':range(1,nSlides),'data':seller_data}
 
-    # all_data= [[seller_data, range(1,nSlides),nSlides],
-    #             [ seller_data, range(1,nSlides),nSlides]
-    #         ]
+#     # all_data= [[seller_data, range(1,nSlides),nSlides],
+#     #             [ seller_data, range(1,nSlides),nSlides]
+#     #         ]
 
-    all_data=[]
-    prod_catgs=seller_info.objects.values("product_catg")
-    catg={item['product_catg'] for item in prod_catgs}
-    for cat in catg:
-        product=seller_info.objects.filter(product_catg=cat)
-        n=len(product)
-        nSlides= n//4 + ceil((n/4)+(n//4))
-
-
-        all_data.append([product, range(1,nSlides), nSlides])
+#     all_data=[]
+#     prod_catgs=seller_info.objects.values("product_catg")
+#     catg={item['product_catg'] for item in prod_catgs}
+#     for cat in catg:
+#         product=seller_info.objects.filter(product_catg=cat)
+#         n=len(product)
+#         nSlides= n//4 + ceil((n/4)+(n//4))
 
 
+#         all_data.append([product, range(1,nSlides), nSlides])
 
 
-    parameter={'all_data':all_data}
-    return render( request,"index_4.html", parameter)
 
-def about(request):
-    return render(request,"about.html")
+
+#     parameter={'all_data':all_data}
+#     return render( request,"index_4.html", parameter)
+
+# def about(request):
+#     return render(request,"about.html")
 
 
 
@@ -63,20 +63,33 @@ def worker_services(request):
 def index(request):
 
     all_data=[]
-    prod_catgs=seller_info.objects.values("product_catg")
+    # prod_catgs=seller_info.objects.values("product_catg")
+     
+    prod_catgs= Advertise.objects.values('service_catg')
 
     # 
+    
+            # search_name= request.GET.get('search_name')
+            
+            # if search_name!='' and search_name is not None:
+            # dest_all = dest_all.filter(Q(service_catg__icontains="worker")|Q(service_catg__icontains=search_name)|Q(service_name__icontains=search_name)|Q(skill__icontains=search_name))
+                
+            # else:
+            #     pass
+    
+
+    #
     search_name= request.GET.get('search_name')
     if search_name!='' and search_name is not None:
-        prod_catgs = prod_catgs.filter(Q(product_name__icontains=search_name)| Q(product_catg__icontains=search_name)|Q(seller_name__icontains=search_name)|Q(address__icontains=search_name))
+        prod_catgs = prod_catgs.filter(Q(service_catg__icontains=search_name)| Q(service_name__icontains=search_name)|Q(service_catg__icontains=search_name)|Q(service_skill__icontains=search_name))
     
     else:
         pass
-    catg={item['product_catg'] for item in prod_catgs}  
+    catg={item['service_catg'] for item in prod_catgs}  
 
     # 
     for cat in catg:
-        product=seller_info.objects.filter(product_catg=cat)
+        product=Advertise.objects.filter(service_catg=cat)
         n=len(product)
         nSlides= n//4 + ceil((n/4)+(n//4))
 
@@ -84,7 +97,7 @@ def index(request):
         all_data.append([product, range(1,nSlides), nSlides])
 
     parameter={'all_data':all_data}
-    return render( request,"index_4.html", parameter)
+    return render( request,"index_3.html", parameter)
 
     # serch logic 
         
