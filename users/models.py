@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from posts.models import Advertise
 # Create your models here.
 
 
@@ -27,5 +28,3 @@ class Profile(models.Model):
         return self.user.username
 
 
-# class Inquiry(models.Model):
-#     adverti

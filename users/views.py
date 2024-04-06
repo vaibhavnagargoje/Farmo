@@ -5,8 +5,10 @@ from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from .models import  Profile
 from .forms import UserEditForm, ProfileEditForm
+from posts.forms import CommentForm
 from django.contrib import messages
 from posts.models import Advertise
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 
@@ -21,8 +23,11 @@ def user_login(request):
                 current_user=request.user
                 advertise = Advertise.objects.filter(user=current_user)
                 profile =  Profile.objects.get(user=current_user)
+                
+                return redirect('home')
 
-                return render(request,'users/index.html',{'profile':profile})
+                # return render(request,'users',{'profile':profile})
+                return render(request,'users',{'profile':profile})
                 # return render(request,'users/index.html')
             else:
                 messages.success(request,"Invalid Detail ! ")
@@ -46,11 +51,22 @@ def user_logout(request):
 
 @login_required
 def index(request):
+    if request.method =='POST':
+        Inquiry_form = CommentForm(data=request.POST)
+        new_inquiry = Inquiry_form.save(commit=False)
+        post_id = request.POST.get('post_id')
+        post=get_object_or_404(Advertise,id=post_id)
+        new_inquiry.advertise = post
+        new_inquiry.save()
+    else:
+        Inquiry_form=CommentForm()
+
     current_user=request.user
     advertise = Advertise.objects.filter(user=current_user)
     profile =  Profile.objects.get(user=current_user)
+   
 
-    return render(request,'users/index.html',{'profile':profile,'advertises':advertise})
+    return render(request,'users/index.html',{'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form})
 
 
 

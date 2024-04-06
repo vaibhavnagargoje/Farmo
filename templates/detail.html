@@ -52,6 +52,7 @@
             <p class="lead">{{ dest.service_disc}}</p>
             <br>
             <p><strong>Price:</strong> &#8377; {{dest.price}}/{{dest.charge_type}}</p>
+            <p><strong>id:</strong>  {{advertise.id}}</p>
 <br>
             <p><strong>Category:</strong> {{dest.service_catg}}</p>
 
@@ -102,7 +103,35 @@
                 <p><strong>Skill:</strong> {{dest.skill}}</p>
             </div>
         </div>
+        
     </div>
+</div>
+{{advertise.price}}
+<h1> Inquireyg</h1>
+{% for comment in advertise.inquirys.all  %}
+    {{comment.message}}
+    <h1> {{ comment.posted_by }}</h1>
+{% endfor %}
+</div>
+
+<div class="px-5 py-5">
+<form method="post">
+   {% csrf_token %} 
+   <div>
+    {{ comment_form.message }}
+   </div>
+
+   <div>
+  <input type="hidden" name="post_id" id="post_id" value="{{dest.id}}"  >
+  <input type="hidden" name="posted_by" id="posted_by" value="{{ current_user}}"  >
+  </div>
+
+   <div>
+    <button type='submit'>Submit</button>
+  </div>
+</form>
+
+</div>
 </div>
 
 <script>

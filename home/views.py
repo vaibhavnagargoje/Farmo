@@ -8,6 +8,13 @@ from .models import destiatiion
 from django.db.models import Q
 from .forms import ContactForm
 from django.contrib import  messages
+from django.contrib.auth.decorators import login_required
+
+
+from posts.forms import CommentForm
+from django.shortcuts import get_object_or_404
+
+
 
 # Create your views here.
 # def index(request):
@@ -213,16 +220,30 @@ def vehical_services(request):
   
 
 
-
+@login_required
 def detail(request,id):
-    ## seler info tabel data 
-    # dest_all= seller_info.objects.get(id=id)
-    # return render(request,"detail.html",{'dest':dest_all})
+    if request.method =='POST':
+        Inquiry_form = CommentForm(data=request.POST)
+        new_inquiry = Inquiry_form.save(commit=False)
+        post_id = request.POST.get('post_id')
+        post=get_object_or_404(Advertise,id=post_id)
+        new_inquiry.advertise = post
+        new_inquiry.save()
+    else:
+        Inquiry_form=CommentForm()
 
-    # Advertise tabel data 
+    current_user=request.user
+    advertise = Advertise.objects.filter(user=current_user)
+    profile =  Profile.objects.get(user=current_user)
+   
+
+    # return render(request,'users/index.html',{'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form})
+
+
+
     dests = Advertise.objects.get(id=id)
-    print(dests)
-    return render(request,'detail.html',{'dest':dests})
+    
+    return render(request,'detail.html',{'dest':dests,'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form})
 
     
 

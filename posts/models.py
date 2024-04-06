@@ -40,3 +40,18 @@ class Advertise(models.Model):
             self.slug = slugify(self.service_name)
 
         super().save(*args,**kwargs)
+
+
+
+
+class Inquiry(models.Model):
+    advertise = models.ForeignKey(Advertise, on_delete=models.CASCADE,related_name='inquirys')
+    message=models.CharField(max_length=100)
+    created=models.DateTimeField(auto_now=True)
+    posted_by= models.CharField( max_length=100)
+
+    class Meta:
+        ordering=('created',)
+
+    def __str__(self):
+        return self.message

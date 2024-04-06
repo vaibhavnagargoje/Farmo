@@ -137,11 +137,40 @@
                     <button class="btn btn-success"> <a style="text-decoration: none; color: white;" href="{% url 'logout' %}">Active</a></button>
                 {% endif %}
               </div>
+              {{advertise.price}}
+              <h1> Inquireyg</h1>
+              {% for comment in advertise.inquirys.all  %}
+                  {{comment.message}}
+                  <h1> {{ comment.posted_by }}</h1>
+              {% endfor %}
             </div>
+
+            {% comment %} <div class="px-5 py-5">
+              <form method="post">
+                 {% csrf_token %} 
+                 <div>
+                  {{ comment_form.message }}
+                 </div>
+
+                 <div>
+                <input type="hidden" name="post_id" id="post_id" value="{{advertise.id}}"  >
+                <input type="hidden" name="posted_by" id="posted_by" value="{{ current_user}}"  >
+                </div>
+
+                 <div>
+                  <button type='submit'>Submit</button>
+                </div>
+              </form>
+
+            </div> {% endcomment %}
           </div>
         </div>
+        
       </div>
       {% endfor %}
+
+    </div>
+      
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
