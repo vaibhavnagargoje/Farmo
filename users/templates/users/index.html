@@ -137,13 +137,14 @@
                     <button class="btn btn-success"> <a style="text-decoration: none; color: white;" href="{% url 'logout' %}">Active</a></button>
                 {% endif %}
               </div>
-              {{advertise.price}}
-              <h1> Inquireyg</h1>
+              <br>
+              <hr>
+              {% comment %} <h1> Inquireyg</h1>
               {% for comment in advertise.inquirys.all  %}
                   {{comment.message}}
                   <h1> {{ comment.posted_by }}</h1>
               {% endfor %}
-            </div>
+            </div> {% endcomment %}
 
             {% comment %} <div class="px-5 py-5">
               <form method="post">
@@ -163,9 +164,43 @@
               </form>
 
             </div> {% endcomment %}
+            <div class="container">
+              <h2 class=" row justify-content-center">Work Inqriry </h2>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Contact Detail </th>
+                    <th>Inquiry</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  {% for comment in advertise.inquirys.all  %}
+
+                  <tr>
+                    <td>1</td>
+                    <td>{{comment.posted_by}}</td>
+                    <td>{{comment.inquiry_mobile}}</td>
+                    <td> {{comment.message}}</td>
+                    <td> {{comment.work_date}} </td>
+                    <td>
+                      <button type="button" class="btn btn-danger">Delete</button>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  
+
+                  <!-- Add more rows as needed -->
+                </tbody>
+              </table>
           </div>
         </div>
-        
+      </div>
       </div>
       {% endfor %}
 

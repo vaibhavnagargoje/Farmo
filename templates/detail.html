@@ -53,7 +53,7 @@
             <br>
             <p><strong>Price:</strong> &#8377; {{dest.price}}/{{dest.charge_type}}</p>
             <p><strong>id:</strong>  {{advertise.id}}</p>
-<br>
+        <br>
             <p><strong>Category:</strong> {{dest.service_catg}}</p>
 
             <div class="container">
@@ -106,32 +106,74 @@
         
     </div>
 </div>
-{{advertise.price}}
-<h1> Inquireyg</h1>
-{% for comment in advertise.inquirys.all  %}
-    {{comment.message}}
-    <h1> {{ comment.posted_by }}</h1>
-{% endfor %}
+
 </div>
 
-<div class="px-5 py-5">
+{% comment %} <div class="px-5 py-5">
 <form method="post">
    {% csrf_token %} 
    <div>
-    {{ comment_form.message }}
+    message : {{ comment_form.message }}
    </div>
+   <div>
+    chooes date : {{comment_form.work_date}}
+   </div>
+   <div class="mb-10">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="">Date Of Birth :  </label>
+    <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+        {{comment_form.work_date}}
+    </div>
+</div>
 
    <div>
   <input type="hidden" name="post_id" id="post_id" value="{{dest.id}}"  >
-  <input type="hidden" name="posted_by" id="posted_by" value="{{ current_user}}"  >
+  <input type="date" name="work_date" id="work_date" value="{{dest.id}}"  >
+  <input type="hidden" name="posted_by" id="posted_by" value="{{ current_user.first_name}} +{{current_user.last_name}}"  >
   </div>
 
    <div>
     <button type='submit'>Submit</button>
   </div>
-</form>
+</form> {% endcomment %}
 
 </div>
+
+
+<div class="container">
+    <h2 class="mb-5">Enquiry Form</h2>
+    <form method="post">
+        {% csrf_token %} 
+      <div class="mb-3">
+        <label for="mobileNumber" class="form-label">Type Enquriy Detail :</label>
+        <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+            {{comment_form.message }}
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="mobileNumber" class="form-label">Enter Your Mobile Number : </label>
+        <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+            {{comment_form.inquiry_mobile }}
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="mobileNumber" class="form-label">Type Enquriy Detail :</label>
+        <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">
+            {{comment_form.work_date }}
+        </div>
+      </div>
+      <div>
+        <input type="hidden" name="post_id" id="post_id" value="{{dest.id}}"  >
+        <input type="hidden" name="posted_by" id="posted_by" value="{{ current_user.first_name}} {{current_user.last_name}}"  >
+        </div>
+      
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <hr>
+
+    
+  </div>
+
 </div>
 
 <script>

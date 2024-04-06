@@ -8,7 +8,12 @@ class AdvertiseCreateForm(forms.ModelForm):
         fields = ('service_name','service_catg','service_img','service_disc','skill','price','charge_type','status')
 
 
+class DateInput(forms.DateInput):  # for Dob Input dilog box 
+    input_type = 'date'
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Inquiry
-        fields = ('message','posted_by')
+        fields = ('message','posted_by','work_date','inquiry_mobile')
+        widgets = {
+            'work_date': DateInput()
+        }

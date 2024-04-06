@@ -47,7 +47,10 @@ class Advertise(models.Model):
 class Inquiry(models.Model):
     advertise = models.ForeignKey(Advertise, on_delete=models.CASCADE,related_name='inquirys')
     message=models.CharField(max_length=100)
+    inquiry_mobile=models.BigIntegerField(max_length=10)
     created=models.DateTimeField(auto_now=True)
+    work_date=models.DateField(blank=True, null=True)
+
     posted_by= models.CharField( max_length=100)
 
     class Meta:
