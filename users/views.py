@@ -9,6 +9,9 @@ from posts.forms import CommentForm
 from django.contrib import messages
 from posts.models import Advertise,Inquiry
 from django.shortcuts import get_object_or_404
+import json
+from collections import Counter
+from datetime import datetime
 # Create your views here.
 
 
@@ -64,9 +67,48 @@ def index(request):
     current_user=request.user
     advertise = Advertise.objects.filter(user=current_user)
     profile =  Profile.objects.get(user=current_user)
+
+
+    inquiries = Inquiry.objects.all()
+
+    message_count_by_date = Counter(inquiry.created.date() for inquiry in inquiries)
+
+    # Sort the dates
+    sorted_dates = sorted(message_count_by_date.keys())
+
+    # Prepare data for Chart.js
+    labels = [date.strftime('%Y-%m-%d') for date in sorted_dates]
+    data = [message_count_by_date[date] for date in sorted_dates]
+    
+    labels= json.dumps(labels)
+    data= json.dumps(data)
+    
    
 
-    return render(request,'users/index.html',{'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form})
+    return render(request,'users/index.html',{'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form ,'labels':labels,'data':data})
+
+
+
+
+
+
+# @login_required
+# def index(request):
+#     if request.method =='POST':
+#         Inquiry_form = CommentForm(data=request.POST)
+#         new_inquiry = Inquiry_form.save(commit=False)
+#         post_id = request.POST.get('post_id')
+#         post=get_object_or_404(Advertise,id=post_id)
+#         new_inquiry.advertise = post
+#         new_inquiry.save()
+#     else:
+#         Inquiry_form=CommentForm()
+
+#     current_user=request.user
+#     advertise = Advertise.objects.filter(user=current_user)
+#     profile =  Profile.objects.get(user=current_user)
+
+#     return render(request,'users/index.html',{'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form})
 
 
 
