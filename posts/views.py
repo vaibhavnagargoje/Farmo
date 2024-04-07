@@ -15,7 +15,7 @@ def  advertise_create(request):
             new_advertise = form.save(commit=False)
             new_advertise.user = request.user
             new_advertise.save()
-            messages.success(request, 'Your Services is Posted Succesully')
+            messages.success(request, 'Your Services/Advertise Created or Successfully ')
     
     else:
         form = AdvertiseCreateForm(data=request.POST)

@@ -16,8 +16,12 @@
         /* Hide the enquiry form initially */
         #enquiryForm {
           display: none;
-        }
-        
+        };
+        #reportform{
+            display: none;
+            background-color:blue;
+
+        };
     </style>
     
 </head>
@@ -58,10 +62,10 @@
                 <h2 class="mb-4 text- fs-2"> {{dest.service_name}}</h2>
             </div>
             
-            <p class="lead">{{ dest.service_disc}}</p>
+            <p class="lead"><strong>About :</strong> {{ dest.service_disc}}</p>
             <br>
             <p><strong>Price:</strong> &#8377; {{dest.price}}/{{dest.charge_type}}</p>
-            <p><strong>id:</strong>  {{advertise.id}}</p>
+            
         <br>
             <p><strong>Category:</strong> {{dest.service_catg}}</p>
 
@@ -88,8 +92,9 @@
             
             <hr>
             <div class="d-flex justify-content-between mt-3 mb-3">
-                <button class="btn btn-primary"  id="showFormBtn" onclick="toggleEnquiryForm()">Book Now</button>
-                <button class="btn btn-outline-success" onclick="openPhoneDialer('{{ dest.user.profile.mobile }}')"><i class="fas fa-phone"></i> Call Now</button>
+                <button class="btn btn-primary"  id="showFormBtn" onclick="toggleEnquiryForm()">Enquiry Now </button>
+                {% comment %} <button class="btn btn-outline-danger"  onclick="openPhoneDialer('{{ dest.user.profile.mobile }}')"><i class="fas fa-bug"></i> Report Provider </button> {% endcomment %}
+                <button class="btn btn-outline-danger" id="showFormBtn" onclick="toggleReportForm()">Report Provider </button>
             </div>
             <hr>
             <div class="mb-3">
@@ -149,9 +154,9 @@
 
 
 <div class="container">
-    <h2 class="mb-5">Enquiry Form</h2>
-
+    
     <form method="POST" id="enquiryForm">
+        <h2 class="mb-5">Enquiry Form</h2>
         {% csrf_token %} 
       <div class="mb-3">
         <label for="mobileNumber" class="form-label">Type Enquriy Detail :</label>
@@ -178,7 +183,7 @@
       
       <button type="submit" name="Inquiry_form" class="btn btn-primary">Submit</button>
     </form>
-
+    
     <hr>
 
     
@@ -191,9 +196,9 @@
 {% comment %}  report form  {% endcomment %}
 
 <div class="container">
-    <h2 class="mb-5">Report this form </h2>
-
-    <form method="POST">
+    
+    <form method="post" id="reportform" >
+        <h2 class="mb-5">Report this form </h2>
         {% csrf_token %} 
       <div class="mb-3">
         <label for="mobileNumber" class="form-label"> Message  :</label>
@@ -226,6 +231,15 @@
           form.style.display = "block";
         } else {
           form.style.display = "none";
+        }
+      }
+   
+    function toggleReportForm() {
+        var formbtn = document.getElementById('reportform');
+        if (formbtn.style.display === "none") {
+            formbtn.style.display = "block";
+        } else {
+            formbtn.style.display = "none";
         }
       }
    

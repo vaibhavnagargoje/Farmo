@@ -131,10 +131,25 @@
                   </div>
                 </div>
                 {% if advertise.user.profile.status  == True %}
-                    <button class="btn btn-danger"> <a style="text-decoration: none; color: white;" href="{% url 'logout' %}">Go InActive </a></button>
+                    {% comment %} <button class=" btn btn-success"> <a style="text-decoration: none; color: white;" >Go InActive </a></button> {% endcomment %}
+
+                    <div class="row">
+                      
+                          <div class="bg-success rounded ml-3 text-center ">
+                              <p style="text-decoration: none; color: white; " > Active Service </p>
+                          </div>
+                      
+                  </div>
 
                    {% else %} 
-                    <button class="btn btn-success"> <a style="text-decoration: none; color: white;" href="{% url 'logout' %}">Active</a></button>
+                   <div class="row justify-content-center">
+                      
+                    <div class="bg-success rounded ml-3 ">
+                        <p style="text-decoration: none; color: white; " >Inactive Service </p>
+                    </div>
+                
+            </div>
+                    {% comment %} <button class="btn btn-success"> <a style="text-decoration: none; color: white;">Active</a></button> {% endcomment %}
                 {% endif %}
               </div>
               <br>
@@ -169,12 +184,13 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th>#</th>
+                    <th>No</th>
                     <th>Name</th>
                     <th>Contact Detail </th>
                     <th>Inquiry</th>
                     <th>Date</th>
                     <th>Action</th>
+                    <th>contact</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -188,12 +204,15 @@
                     <td>{{comment.inquiry_mobile}}</td>
                     <td> {{comment.message}}</td>
                     <td> {{comment.work_date}} </td>
-                    <td>
+                    <td> 
                       
                       <form action="{% url 'delete_inquiry' comment.id %}" method="post">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger " > <i class="fa-solid fa-trash"></i> Delete</button>
                       </form>
+                    </td>
+                    <td> 
+                      <button class="btn btn-outline-success"  onclick="openPhoneDialer('{{ comment.inquiry_mobile}}')"><i class="fas fa-phone"></i> Contact Now  </button>
                     </td>
                   </tr>
                   {% endfor %}
@@ -209,7 +228,69 @@
       {% endfor %}
 
     </div>
+
+
+    <div class="flex">
+      <div class="w-1/2 shadow-lg ml-10">
+        <h1> first chart</h1>
+      <canvas id="myChart" class="m-10"></canvas>
+      </div>
+
+      <div class="w-1/2 shadow-lg ml-10">
+       
+      </div>
+    </div>
       
+
+
+
+
+
+{% comment %} <script>
+  function openPhoneDialer(phoneNumber) {
+    window.location.href = 'tel:' + phoneNumber;
+}
+</script> {% endcomment %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              label: '# of Votes',
+              data: [120, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+  </script>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

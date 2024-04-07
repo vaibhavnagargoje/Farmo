@@ -170,10 +170,12 @@ def worker_services(request):
         pass
     
 
+    
+
 
     return render(request,"workers_page.html",{'dests': dest_all})
     
-    return render(request,'testvehi.html',{'dests':dest_all})
+    
 
 
 
@@ -251,6 +253,8 @@ def detail(request,id):
             post=get_object_or_404(Advertise,id=post_id)
             new_inquiry.advertise = post
             new_inquiry.save()
+            messages.success(request,"Thank You ! Your Enquiry is Send  Successfully. Now Service Provider will Contack you back")
+
 
         elif 'Report_form' in request.POST:
             print("1-1-2")
@@ -263,6 +267,8 @@ def detail(request,id):
             new_report.advertise = post
 
             new_report.save()
+            messages.success(request,"Thank You ! Your Query/Complaint has been submitted to the admin. Admin Will take Action very soon")
+
                 
 
 
@@ -320,7 +326,7 @@ def contact_us(request):
     form =ContactForm(request.POST or None)
     if form.is_valid():
         form.save()
-        messages.success(request,"Your message has been sent.")
+        messages.success(request,"Your message has been sent. ")
         return redirect('/')        
 
     return render(request,"contact.html",{'form':form})

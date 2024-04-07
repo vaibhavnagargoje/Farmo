@@ -23,7 +23,7 @@ def user_login(request):
                 current_user=request.user
                 advertise = Advertise.objects.filter(user=current_user)
                 profile =  Profile.objects.get(user=current_user)
-                
+                messages.info(request, "Login Successfully..")
                 return redirect('home')
 
                 # return render(request,'users',{'profile':profile})
@@ -83,7 +83,7 @@ def register(request):
             new_user.set_password(user_form.cleaned_data['password2'])
             new_user.save()
             Profile.objects.create(user=new_user)
-            messages.success(request,"Registration Successful..")
+            messages.success(request,"Registration Successful ! Now You can Complete Your Profile ..")
             
             # return render(request,"index_4.html")
             return redirect('/users')
@@ -132,7 +132,8 @@ def edit_2(request):
             print("edit successfull 1-1")
             user_form.save()
             profile_form.save()
-            messages.success(request, 'Your profile is updated successfully')
+            messages.warning(request, 'Your profile is updated successfully ')
+            
             return redirect('/users')
 
     
@@ -165,7 +166,7 @@ def delete_inquiry(request, inquiry_id):
 
     # Delete the inquiry
     inquiry.delete()
-    messages.success(request,"Inquirey Deleted Successfully  ...")
+    messages.success(request,"Inquirey Deleted Successfully ...")
 
     # Redirect to a success page or any other appropriate page
     return redirect('index')

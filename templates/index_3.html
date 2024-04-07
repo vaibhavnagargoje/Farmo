@@ -4,68 +4,59 @@
 
 
 
-  
-{% block title %} Farmo | Home  {% endblock title %}
+
+{% block title %} Farmo | Home {% endblock title %}
 
 
 
 
 
-  {% block body %}
+{% block body %}
 
-  {% if messages %}
 
- 
-  <div class="alert alert-success alert-dismissible" role="alert">
-   
-    
-    <ul class="messages">
-      {% for message in messages %}
-      <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
-      {% endfor %}
-    </ul>
-  </div>
-{% endif %}
+
+
+
 
 
 
 
 <div id="services">
   <div class="container">
-      <h1 class="sub-title">My Services</h1>
-      <div class="services-list">
-        <div> 
-          <a href="/workers_page">
-            <i class="fa-solid fa-person-digging"></i>
-             <h2>Workers  </h2>
-              <p>Good Workers</p>
-              <a href="#">Learn more</a>
-            </a>
-            </div>
+    <h3 class="sub-title text-center fs-1">My Services</h3>
+    <div class="services-list">
+      <div>
+        <a href="/workers_page">
+          <i class="fa-solid fa-person-digging"></i>
+          <h2>Workers </h2>
+          <p>Good Workers</p>
+          <a href="#">Learn more</a>
+        </a>
+      </div>
 
 
-          <div>
-          <a href="/machinorys_page">
+      <div>
+        <a href="/machinorys_page">
 
-            <i class="fa-solid fa-tractor"></i>
-              <h2> Machinerys </h2>
-              <p>Good Machinerys</p>
-              <a href="#">Learn more</a>
-          </a>
-          </div>
+          <i class="fa-solid fa-tractor"></i>
+          <h2> Machinerys </h2>
+          <p>Good Machinerys</p>
+          <a href="#">Learn more</a>
+        </a>
+      </div>
 
-          <div>
-          <a href="/vehicals_page">
+      <div>
+        <a href="/vehicals_page">
 
-            <i class="fa-solid fa-truck"></i>
-              <h2>Vehicles</h2>
-              <p>Vehicles </p>
-              <a href="#">Learn more</a>
-          </a>
-          </div>
+          <i class="fa-solid fa-truck"></i>
+          <h2>Vehicles</h2>
+          <p>Vehicles </p>
+          <a href="#">Learn more</a>
+        </a>
+      </div>
 
 
-          <!-- <div>
+      <!-- <div>
               <i class="fa-solid fa-database"></i>
               <h2>Backend Devloper</h2>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quisquam accusantium iste odio sint, neque a excepturi dignissimos. Tempora, atque.</p>
@@ -73,87 +64,89 @@
           </div> -->
 
 
-      </div>
+    </div>
   </div>
 </div>
 
 
 
 
-  <div class="container my-5">
-    <div class="row g-2">
-      <div class="col-6 m-2">
-        Fresh recommendations
+<div class="container my-5">
+  <div class="row ">
+    <div class="col-12 m-2 fs-3 text-center  ">
+      Fresh Recommendations
+    </div>
+  </div>
+
+
+
+  <div class="row g-2">
+
+    {% for dest, 4, nSlides in all_data %}
+
+    <h2 class="mt-5 fs-4 "> {{ dest.0.service_catg }} </h2>
+
+    {% for i in dest|slice:":4" %}
+
+
+
+    <div class="product-content">
+
+
+      <div class="row mt-3 mb-3">
+        <div class="col-10 mt-3">
+          <img class="rounded" src='/media/{{i.service_img}}' alt="">
+
+        </div>
+        <div class="col-2">
+          {% if i.user.profile.status == True %}
+
+          <img class="w-2 h-2" style=" height: 35px;" src="/media/available.png" alt="">
+
+          {% else %}
+          <img style=" height: 35px;" src="/media/unavailable.png" alt="">
+          {% endif %}
+
+        </div>
       </div>
-    </div>
 
 
-    
-    <div class="row g-2">
-      {% for dest, 4, nSlides in all_data %}
-      
-  <h2 class="mt-5"> {{ dest.0.service_catg }} </h2>
+      <h3> {{i.service_name|slice:":15"}}...</h3>
+      <p class="seller_name">{{i.user.first_name}} {{i.user.last_name}}</p>
+      <p><b>Mo:-{{i.user.profile.mobile|slice:":6"}}####</b></p>
 
-  {% for i in dest|slice:":4" %}
+      <h6><b> &#8377; {{i.price}}/{{ i.charge_type }} </b> </h6>
+      <ul>
+        <li><i class="fa fa-star checked"></i></li>
+        <li><i class="fa fa-star checked"></i></li>
+        <li><i class="fa fa-star checked"></i></li>
+        <li><i class="fa fa-star checked"></i></li>
+        <li><i class="fa fa-star "></i></li>
+      </ul>
 
-
-
-      <div class="product-content">
-
-
-        <div class="row mt-3 mb-3">
-          <div class="col-10 mt-3">
-            <img  class="rounded" src='/media/{{i.service_img}}' alt="">
-            
-          </div>
-          <div class="col-2" >
-              {% if i.user.profile.status  == True %}
-            
-                <img class="w-2 h-2" style=" height: 35px;" src="/media/available.png" alt="">
-            
-            {% else %}
-            <img style=" height: 35px;" src="/media/unavailable.png" alt="">
-            {% endif %}
-            
-          </div>
-         </div>
-        
-
-        <h3> {{i.service_name|slice:":15"}}...</h3>
-        <p class="seller_name">{{i.user.first_name}} {{i.user.last_name}}</p>
-        <p><b>Mo:-{{i.user.profile.mobile|slice:":6"}}####</b></p>
-
-        <h6><b> &#8377; {{i.price}}/{{ i.charge_type }} </b> </h6>
-        <ul>
-            <li><i class="fa fa-star checked"></i></li>
-            <li><i class="fa fa-star checked"></i></li>
-            <li><i class="fa fa-star checked"></i></li>
-            <li><i class="fa fa-star checked"></i></li>
-            <li><i class="fa fa-star "></i></li>
-        </ul>
-        
-       <button type="submit" class="buy-1">
+      <button type="submit" class="buy-1">
         <a href="/{{i.id}}">
-           Call Now
-          </a>
-        </button>
-    
+          Call Now
+        </a>
+      </button>
+
 
     </div>
 
 
-      {% endfor %}
+    {% endfor %}
 
-  {% endfor %}
+    {% endfor %}
   </div>
 
-  </div>
+</div>
 
 
 
-  {% endblock %}
-   
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+{% endblock %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

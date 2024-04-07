@@ -36,6 +36,12 @@
           display: none;
         }
 
+        
+        #reportform{
+          display: none;
+          
+
+      };
 
       footer{
           z-index: 10;
@@ -165,30 +171,25 @@
     </ul>
   </div>
 
-
-  <div class="container">
-
-    
-{% if messages %}
-
- 
-<div class="alert alert-success alert-dismissible" role="alert">
- 
   
-  <ul class="messages">
-    {% for message in messages %}
-    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
-    {% endfor %}
-  </ul>
+<div class="contain">
+
+      
+  {% if messages %}
+
+    <div class="alert alert-success dismissible flex justify-content-center" role="alert">
+      <ul class="messages">
+        {% for message in messages %}
+        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
 </div>
-{% endif %}
 
 
-  </div>
 
-  
-
-    {% block services %}
+{% block services %}
     
         
         {% comment %} <div id="services">
