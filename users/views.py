@@ -82,10 +82,26 @@ def index(request):
     
     labels= json.dumps(labels)
     data= json.dumps(data)
-    
    
 
-    return render(request,'users/index.html',{'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form ,'labels':labels,'data':data})
+    #for chatagory 
+    category_counts = Counter(Advertise.objects.values_list('service_catg', flat=True))
+
+    category_counts = dict((category, count) for category, count in Counter(category_counts).items())
+    # Prepare data for advertisement category chart
+    category_labels = list(category_counts.keys())
+    category_values = list(category_counts.values())
+    print(category_labels)
+    print(category_values)
+
+
+    category_labels = json.dumps(category_labels)
+    category_values = json.dumps(category_values)
+    print(category_labels)
+    print(category_values)
+   
+
+    return render(request,'users/index.html',{'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form ,'labels':labels,'data':data,'category_values':category_values,'category_labels':category_labels})
 
 
 
