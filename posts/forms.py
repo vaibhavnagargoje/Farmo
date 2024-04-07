@@ -1,4 +1,4 @@
-from .models import Advertise,Inquiry
+from .models import Advertise,Inquiry,Reports
 from django import forms
 
 class AdvertiseCreateForm(forms.ModelForm):
@@ -8,8 +8,11 @@ class AdvertiseCreateForm(forms.ModelForm):
         fields = ('service_name','service_catg','service_img','service_disc','skill','price','charge_type','status')
 
 
+
+
 class DateInput(forms.DateInput):  # for Dob Input dilog box 
     input_type = 'date'
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Inquiry
@@ -17,3 +20,11 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'work_date': DateInput()
         }
+
+
+    
+
+class ReportsAdvertise(forms.ModelForm):
+    class Meta:
+        model = Reports
+        fields = ('message','posted_by')

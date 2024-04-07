@@ -47,14 +47,32 @@ class Advertise(models.Model):
 class Inquiry(models.Model):
     advertise = models.ForeignKey(Advertise, on_delete=models.CASCADE,related_name='inquirys')
     message=models.CharField(max_length=100)
-    inquiry_mobile=models.BigIntegerField(max_length=10)
+    inquiry_mobile=models.BigIntegerField()
     created=models.DateTimeField(auto_now=True)
     work_date=models.DateField(blank=True, null=True)
 
-    posted_by= models.CharField( max_length=100)
+    posted_by= models.CharField(max_length=100)
 
     class Meta:
         ordering=('created',)
 
     def __str__(self):
         return self.message
+    
+
+
+class Reports(models.Model):
+    advertise= models.ForeignKey(Advertise,on_delete=models.CASCADE, related_name='reports')
+    message=models.CharField(max_length=300)
+    created =models.DateTimeField(auto_now=True)
+    posted_by= models.CharField(max_length=100)
+    # document= models.ImageField(upload_to="home/images", default="")
+
+
+    class Meta:
+        ordering=('created',)
+
+    def __str__(self):
+        return self.message
+
+    

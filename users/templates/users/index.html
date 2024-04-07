@@ -130,7 +130,7 @@
                     <img  src="{{ advertise.service_img.url }}" class="img-fluid advertise-image" alt="Service Photo">
                   </div>
                 </div>
-                {% if advertise.status == True %}
+                {% if advertise.user.profile.status  == True %}
                     <button class="btn btn-danger"> <a style="text-decoration: none; color: white;" href="{% url 'logout' %}">Go InActive </a></button>
 
                    {% else %} 
@@ -189,7 +189,11 @@
                     <td> {{comment.message}}</td>
                     <td> {{comment.work_date}} </td>
                     <td>
-                      <button type="button" class="btn btn-danger">Delete</button>
+                      
+                      <form action="{% url 'delete_inquiry' comment.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                      </form>
                     </td>
                   </tr>
                   {% endfor %}

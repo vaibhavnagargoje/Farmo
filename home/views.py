@@ -11,7 +11,8 @@ from django.contrib import  messages
 from django.contrib.auth.decorators import login_required
 
 
-from posts.forms import CommentForm
+from posts.forms import CommentForm,ReportsAdvertise
+# from posts.forms import CommentForm,ReportsAdvertise
 from django.shortcuts import get_object_or_404
 
 
@@ -71,8 +72,13 @@ def index(request):
 
     all_data=[]
     # prod_catgs=seller_info.objects.values("product_catg")
+    active_profiles = Profile.objects.filter(approval=True)
+    print(active_profiles)
+    
+    dest_all = Advertise.objects.filter(user__profile__in=active_profiles)
+    
      
-    prod_catgs= Advertise.objects.values('service_catg')
+    prod_catgs= dest_all.values('service_catg')
 
     # 
     
@@ -96,7 +102,7 @@ def index(request):
 
     # 
     for cat in catg:
-        product=Advertise.objects.filter(service_catg=cat)
+        product=dest_all.filter(service_catg=cat)
         n=len(product)
         nSlides= n//4 + ceil((n/4)+(n//4))
 
@@ -148,7 +154,11 @@ def worker_services(request):
     # return render(request,"workers_page.html",{'dests': dest_all})
 
 
-    dest_all = Advertise.objects.all()
+    active_profiles = Profile.objects.filter(approval=True)
+    print(active_profiles)
+    
+    dest_all = Advertise.objects.filter(user__profile__in=active_profiles)
+    print(dest_all)
 
 
     search_name= request.GET.get('search_name')
@@ -183,7 +193,11 @@ def machinory_services(request):
     # return render(request,"machinory.html",{'dests': dest_all})
 
 
-    dest_all = Advertise.objects.all()
+    active_profiles = Profile.objects.filter(approval=True)
+    print(active_profiles)
+    
+    dest_all = Advertise.objects.filter(user__profile__in=active_profiles)
+    print(dest_all)
 
 
     search_name= request.GET.get('search_name')
@@ -222,28 +236,78 @@ def vehical_services(request):
 
 @login_required
 def detail(request,id):
+    Inquiry_form = CommentForm()
+    Report_form = ReportsAdvertise()
+
+    
+    print("1")
     if request.method =='POST':
-        Inquiry_form = CommentForm(data=request.POST)
-        new_inquiry = Inquiry_form.save(commit=False)
-        post_id = request.POST.get('post_id')
-        post=get_object_or_404(Advertise,id=post_id)
-        new_inquiry.advertise = post
-        new_inquiry.save()
+        print('1-1')
+        if 'Inquiry_form' in request.POST:
+            print("1-1-1")    
+            Inquiry_form = CommentForm(data=request.POST)
+            new_inquiry = Inquiry_form.save(commit=False)
+            post_id = request.POST.get('post_id')
+            post=get_object_or_404(Advertise,id=post_id)
+            new_inquiry.advertise = post
+            new_inquiry.save()
+
+        elif 'Report_form' in request.POST:
+            print("1-1-2")
+            Report_form = ReportsAdvertise(data=request.POST,files=request.FILES)
+            
+            new_report= Report_form.save(commit=False)
+            
+            post_id=request.POST.get('post_id')
+            post=get_object_or_404(Advertise,id=post_id)
+            new_report.advertise = post
+
+            new_report.save()
+                
+
+
     else:
         Inquiry_form=CommentForm()
+        Report_form=ReportsAdvertise()
+        print('2')
+
+
+        
+    
 
     current_user=request.user
     advertise = Advertise.objects.filter(user=current_user)
     profile =  Profile.objects.get(user=current_user)
    
 
-    # return render(request,'users/index.html',{'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form})
-
-
-
     dests = Advertise.objects.get(id=id)
     
-    return render(request,'detail.html',{'dest':dests,'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form})
+    return render(request,'detail.html',{'dest':dests,'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form,'report':Report_form})
+
+
+
+
+
+# @login_required
+# def detail(request,id):
+#     if request.method =='POST':
+#         Inquiry_form = CommentForm(data=request.POST)
+#         new_inquiry = Inquiry_form.save(commit=False)
+#         post_id = request.POST.get('post_id')
+#         post=get_object_or_404(Advertise,id=post_id)
+#         new_inquiry.advertise = post
+#         new_inquiry.save()
+#     else:
+#         Inquiry_form=CommentForm()
+
+#     current_user=request.user
+#     advertise = Advertise.objects.filter(user=current_user)
+#     profile =  Profile.objects.get(user=current_user)
+   
+
+#     dests = Advertise.objects.get(id=id)
+    
+#     return render(request,'detail.html',{'dest':dests,'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form})
 
     
 
@@ -276,8 +340,11 @@ def join_us(request):
 
 
 def testvehi(request):
+    active_profiles = Profile.objects.filter(approval=True)
+    print(active_profiles)
     
-    dest_all = Advertise.objects.all()
+    dest_all = Advertise.objects.filter(user__profile__in=active_profiles)
+    print(dest_all)
 
 
     search_name= request.GET.get('search_name')

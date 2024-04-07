@@ -20,6 +20,9 @@ class Profile(models.Model):
     pincode= models.IntegerField(blank=True, null=True)
     age = models.IntegerField(default=18)
     register_date=models.DateField(auto_now_add=True)
+    status=models.BooleanField(default=False,)
+    approval=models.BooleanField(default=False,)
+
 
 
 

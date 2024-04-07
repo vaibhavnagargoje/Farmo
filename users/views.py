@@ -5,9 +5,9 @@ from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from .models import  Profile
 from .forms import UserEditForm, ProfileEditForm
-from posts.forms import CommentForm
+from posts.forms import CommentForm 
 from django.contrib import messages
-from posts.models import Advertise
+from posts.models import Advertise,Inquiry
 from django.shortcuts import get_object_or_404
 # Create your views here.
 
@@ -95,7 +95,7 @@ def register(request):
 
     else:
         user_form= UserRegistrationForm()
-    return render(request,'users/register.html',{'user_form':user_form})
+    return render(request,'users/register_2.html',{'user_form':user_form})
 
 
 
@@ -149,3 +149,23 @@ def edit_2(request):
 @login_required
 def delete(request):
     user_form =UserEditForm(instance=request.user,data=request.POST)
+
+
+
+
+
+
+def delete_inquiry(request, inquiry_id):
+    # Retrieve the inquiry object or return a 404 error if not found
+    inquiry = get_object_or_404(Inquiry, pk=inquiry_id)
+
+    # Check if the inquiry belongs to the current user (optional, depending on your requirements)
+    if inquiry.advertise.user != request.user:
+        return redirect('error_page')  # Redirect to an error page or display an error message
+
+    # Delete the inquiry
+    inquiry.delete()
+    messages.success(request,"Inquirey Deleted Successfully  ...")
+
+    # Redirect to a success page or any other appropriate page
+    return redirect('index')

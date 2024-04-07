@@ -24,7 +24,7 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model=Profile
         fields = '__all__'
-        fields = ('photo','mobile','dob','gender','address','pincode','age')
+        fields = ('photo','mobile','dob','gender','address','pincode','age','status')
         widgets = {
             'dob': DateInput()
         }

@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .forms import AdvertiseCreateForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 # Create your views here.
 
 
@@ -13,6 +15,7 @@ def  advertise_create(request):
             new_advertise = form.save(commit=False)
             new_advertise.user = request.user
             new_advertise.save()
+            messages.success(request, 'Your Services is Posted Succesully')
     
     else:
         form = AdvertiseCreateForm(data=request.POST)

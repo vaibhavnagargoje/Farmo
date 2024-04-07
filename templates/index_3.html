@@ -107,7 +107,7 @@
             
           </div>
           <div class="col-2" >
-              {% if i.status == True %}
+              {% if i.user.profile.status  == True %}
             
                 <img class="w-2 h-2" style=" height: 35px;" src="/media/available.png" alt="">
             
@@ -120,7 +120,7 @@
         
 
         <h3> {{i.service_name|slice:":15"}}...</h3>
-        <p class="seller_name">{{i.user.first_name}}{{i.user.last_name}}</p>
+        <p class="seller_name">{{i.user.first_name}} {{i.user.last_name}}</p>
         <p><b>Mo:-{{i.user.profile.mobile|slice:":6"}}####</b></p>
 
         <h6><b> &#8377; {{i.price}}/{{ i.charge_type }} </b> </h6>
