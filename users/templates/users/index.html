@@ -241,8 +241,17 @@
         <h1>Total Category wise Services</h1>
         <canvas id="categoryChart" width="400" height="400"></canvas>
       </div>
-    </div>
       
+    </div>
+    <h1> Visitor Count </h1>
+    
+    <div >
+      <div class="w-10/12 shadow-lg ml-10">
+        
+        <h3>Number of visitors: {{ visitor_count }}</h3>
+          <canvas id="visitorChart" width="499" height="400"></canvas>
+        </div>
+      </div>
 
 
 
@@ -283,6 +292,9 @@
       }
   });
 
+
+
+
   var category_labels = JSON.parse('{{ category_labels|escapejs }}');
   var category_values = JSON.parse('{{ category_values|escapejs }}');
 
@@ -308,6 +320,33 @@
           }
       }
   });
+
+  var dates = JSON.parse('{{ dates|escapejs }}');
+  var counts = JSON.parse('{{ counts|escapejs }}');
+
+  var ctx = document.getElementById('visitorChart').getContext('2d');
+  var visitorChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: dates,
+          datasets: [{
+              label: 'Visitor Count',
+              data: counts,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+
+
 </script>
  <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

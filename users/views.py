@@ -11,7 +11,9 @@ from posts.models import Advertise,Inquiry
 from django.shortcuts import get_object_or_404
 import json
 from collections import Counter
-from datetime import datetime
+from datetime import datetime,timedelta,date
+from home.models import Visitor
+from django.db.models import Sum
 # Create your views here.
 
 
@@ -91,17 +93,47 @@ def index(request):
     # Prepare data for advertisement category chart
     category_labels = list(category_counts.keys())
     category_values = list(category_counts.values())
-    print(category_labels)
-    print(category_values)
+    
 
 
     category_labels = json.dumps(category_labels)
     category_values = json.dumps(category_values)
     print(category_labels)
-    print(category_values)
+
+
+    # visitor logic
+    # end_date = date.today()
+    # start_date = end_date - timedelta(days=30)  # Adjust the number of days as needed
+    # visitors = Visitor.objects.filter(date__range=(start_date, end_date)).order_by('date')
+    # dates = [visitor.date.strftime('%Y-%m-%d') for visitor in visitors]
+    # counts = [visitor.count for visitor in visitors]
    
 
-    return render(request,'users/index.html',{'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form ,'labels':labels,'data':data,'category_values':category_values,'category_labels':category_labels})
+    # visitor = Visitor.objects.get(pk=1)
+
+    # end_date = date.today()
+    # start_date = end_date - timedelta(days=30)  # Adjust the number of days as needed
+    # visitors = Visitor.objects.filter(date__range=(start_date, end_date)).order_by('date')
+    
+    # dates = [visitor.date.strftime('%Y-%m-%d') for visitor in visitors]
+    # counts = [visitor.count for visitor in visitors]
+    # print(counts)
+    # print(dates)
+    # return render(request, 'index.html', {'dates': dates, 'counts': counts})
+
+    end_date = date.today()
+    start_date = end_date - timedelta(days=30)  # Adjust the number of days as needed
+    visitors = Visitor.objects.filter(date__range=(start_date, end_date)).order_by('date')
+
+    # Aggregate counts per date
+    data1 = visitors.values('date').annotate(count=Sum('count'))
+
+    # Extract dates and counts
+    dates = [entry['date'].strftime('%Y-%m-%d') for entry in data1]
+    counts = [entry['count'] for entry in data1]
+    dates = json.dumps(dates)
+    print(counts)
+    return render(request,'users/index.html',{'current_user':current_user,'profile':profile,'advertises':advertise,'comment_form':Inquiry_form ,'labels':labels,'data':data,'category_values':category_values,'category_labels':category_labels,'visitor_count': counts[0],'dates':dates,'counts':counts})
 
 
 

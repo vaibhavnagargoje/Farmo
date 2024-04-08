@@ -67,3 +67,10 @@ class Contact(models.Model):
     
     def __str__(self):
         return self.Name
+    
+
+class Visitor(models.Model):
+    date = models.DateField()
+    count = models.IntegerField(default=0)
+
+    
