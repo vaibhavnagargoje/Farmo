@@ -1,3 +1,5 @@
+
+## droped / cancled table due to features enhancement 
 from django.db import models
 # from datetime import datetime
 

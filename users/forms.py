@@ -57,13 +57,13 @@ class UserRegistrationForm(forms.ModelForm):
 
     password=forms.CharField(label='Password', widget=forms.PasswordInput())
     password2=forms.CharField(label='Confirm Password', widget=forms.PasswordInput())
-    mobile = forms.CharField(label="mobile")
+    # mobile = forms.CharField(label="mobile")
 
 
 
     class Meta:
         model=User
-        fields =fields ={'username','email' , 'first_name','last_name','mobile'}
+        fields =fields ={'username','email' , 'first_name','last_name'}
 
     # def check_password(self):
     #     cleaned_data = super(UserRegistrationForm, self).clean()
@@ -77,14 +77,14 @@ class UserRegistrationForm(forms.ModelForm):
         if(self.cleaned_data['password']!=self.cleaned_data['password2']):
             self.add_error("password2","Password does not matched...")
         
-        if(len(self.cleaned_data['mobile'])<10):
+        if(len(self.cleaned_data['username'])<10):
             # print(len(self.cleaned_data['mobile']))
-            self.add_error("mobile","Please Enter 10 Digit Mobile Number ")
+            self.add_error("username","Please Enter 10 Digit Mobile Number ")
         
         
-        elif(self.cleaned_data['mobile'][0]) not in  ['7','9','8']:
+        elif(self.cleaned_data['username'][0]) not in  ['7','9','8']:
             print("mobile start error")
-            self.add_error("mobile"," Please Enter A Valid Mobile Number and Try Again  ")
+            self.add_error("username"," Please Enter A Valid Mobile Number and Try Again  ")
 
             
         

@@ -21,15 +21,10 @@
         
         <form method="post">
             {% csrf_token %}
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="mobileNumber">
-                    Mobile Number:
-                </label>
-                {{ user_form.mobile }}
-            </div>
+            
             <div class="mb-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                    Username:
+                    Mobile Number(Username):
                 </label>
                 {{ user_form.username }}
             </div>
