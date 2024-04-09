@@ -121,7 +121,7 @@
                     <h5 class="card-title">Service Details</h5>
                     <div class="service-details">
                       <p><strong>Service Name:</strong> {{advertise.service_name}}</p>
-                      <p><strong>Service Date:</strong>{{advertise.price}}</p>
+                      <p><strong> Price  :</strong>{{advertise.price}}</p>
                       <p><strong>Registered Date:</strong> 1st January, 2024</p>
                     </div>
                   </div>
@@ -231,6 +231,11 @@
     </div>
 
 
+
+    <div class="container">
+    {% if request.user.is_superuser %}
+
+
     <div class="flex">
       <div class="w-1/2 shadow-lg ml-10">
         <h1> Total Enquirys</h1>
@@ -243,25 +248,26 @@
       </div>
       
     </div>
-    <h1> Visitor Count </h1>
     
-    <div >
+    
+    <div class="mt-5">
       <div class="w-10/12 shadow-lg ml-10">
         
         <h3>Number of visitors: {{ visitor_count }}</h3>
           <canvas id="visitorChart" width="499" height="400"></canvas>
         </div>
       </div>
+{% endif %}
+    </div>
 
 
 
 
-
-{% comment %} <script>
+ <script>
   function openPhoneDialer(phoneNumber) {
     window.location.href = 'tel:' + phoneNumber;
 }
-</script> {% endcomment %}
+</script>
 
 {% comment %} <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script> {% endcomment %}
 <script>
