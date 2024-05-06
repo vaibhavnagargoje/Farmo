@@ -1,72 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
-    <!-- Include your Tailwind CSS styles -->
-    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Website</title>
+  <style>
+    /* Main styles */
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh; /* Ensures the footer sticks to the bottom */
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1; /* Makes the main content area fill the remaining space */
+      padding: 20px;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+    /* Additional styles to adjust layout when content is present */
+    .has-content main {
+      margin-bottom: 60px; /* Adjust this value to match your footer height */
+    }
+    .has-content footer {
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
 </head>
+<body>
+  <main>
+    <!-- Your page content goes here -->
+    <!-- For demonstration purposes, let's add some content -->
+    <h1>Welcome to Your Website</h1>
+    <p>This is your main content area. Add your content here.</p>
+  </main>
+  <footer>
+    &copy; 2024 Your Website. All rights reserved.
+  </footer>
 
-<body class="bg-gray-200 h-screen flex justify-center items-center">
-    <div class="max-w-md w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <form method="post">
-            {% csrf_token %}
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="mobileNumber">
-                    Mobile Number
-                </label>
-                {{ form.mobileNumber }}
-            </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                    Username
-                </label>
-                {{ form.username }}
-            </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="firstName">
-                    First Name
-                </label>
-                {{ form.firstName }}
-            </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="lastName">
-                    Last Name
-                </label>
-                {{ form.lastName }}
-            </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-                    Email
-                </label>
-                {{ form.email }}
-            </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                    Password
-                </label>
-                {{ form.password }}
-            </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="confirmPassword">
-                    Confirm Password
-                </label>
-                {{ form.confirmPassword }}
-            </div>
-            <div class="flex items-center justify-between">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="submit">
-                    Register
-                </button>
-                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                    href="#">
-                    Already have an account? Login
-                </a>
-            </div>
-        </form>
-    </div>
+  <!-- Script to check if content is present and apply appropriate class -->
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      if (document.querySelector('main').innerHTML.trim() !== '') {
+        document.body.classList.add('has-content');
+      }
+    });
+  </script>
 </body>
-
 </html>

@@ -8,367 +8,387 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        /* Add custom styles here */
-        style>
-    .service-details {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Add custom styles here */
+    style>.service-details {
       font-size: 14px;
     }
+
     .services-photo {
-      
+
       height: 200px;
       overflow-y: auto;
       margin-top: 10px;
       margin-bottom: 10px;
 
     }
-    .container{
-        margin-top: 20px;
-        margin-bottom: 20px;
+
+    .container {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
-    .advertise-image{
+
+    .advertise-image {
       height: 12rem;
       margin-left: 2rem;
-      
+
 
 
     }
   </style>
-    </style>
+  </style>
 </head>
+
 <body>
-    <div class="container mt-5">
-      <div class="row justify-content-center ">
-        <h2 class=" row justify-content-center mb-10"> Profile </h2> 
+  <div class="container mt-5">
+    <div class="row justify-content-center ">
+      <h2 class=" row justify-content-center mb-10"> Profile </h2>
 
 
-        {% if request.user.is_superuser %}
-        <div class="row mb-3">
-          <div class="col-7 text-right">
-            <h4>Your Are a Super User Of Farmo </h4>
-          </div>
-          <div class="col text-right col-4">
-              <button class="btn btn-danger me-3"><a style="text-decoration: none; color: white;" href="{% url "admin:index" %}  "> Super Admin Panal </a></button>
+      {% if request.user.is_superuser %}
+      <div class="row mb-3">
+        <div class="col-7 text-right">
+          <h4>Your Are a Super User Of Farmo </h4>
+        </div>
+        <div class="col text-right col-4">
+          <button class="btn btn-danger me-3"><a style="text-decoration: none; color: white;" href="{% url "
+              admin:index" %} "> Super Admin Panal </a></button>
               
           </div>
         </div>
         
         {% elif request.user.is_staff %}
-        <div class="row mb-3">
-          <div class="col-7 text-right">
-            <h4>Your Are Admin Of Farmo </h4>
-          </div>
-          <div class="col text-right col-4">
-              <button class="btn btn-warning me-3"><a style="text-decoration: none; color: white;" href="{% url "admin:index" %}  "> Admin Panal </a></button>
+        <div class=" row mb-3">
+              <div class="col-7 text-right">
+                <h4>Your Are Admin Of Farmo </h4>
+              </div>
+              <div class="col text-right col-4">
+                <button class="btn btn-warning me-3"><a style="text-decoration: none; color: white;" href="{% url "
+                    admin:index" %} "> Admin Panal </a></button>
               
           </div>
         </div>
         {% endif %}
 
       </div>
-        <div class="row">
-            <!-- User Photo -->
-            <div class="col-md-4">
-                <img style="height: 20rem; width: 20rem;" src ="{{ profile.photo.url }}" alt="User Photo" class="img-fluid rounded-circle mb">
-            </div>
-            <!-- User Information -->
-            <div rowspan="50" class="col-md-8">
-                <div class="card mb-1">
-                    <div class="card-header bg-primary text-white">
-                        User Details
+        <div class=" row">
+                    <!-- User Photo -->
+                    <div class="col-md-4">
+                      <img style="height: 20rem; width: 20rem;" src="{{ profile.photo.url }}" alt="User Photo"
+                        class="img-fluid rounded-circle mb">
                     </div>
-                    <div class="card-body">
-                        <p><strong>Name:</strong>{{profile.user.first_name}} {{profile.user.last_name}} </p>
-                        <p><strong>Location:</strong> {{profile.address}}</p>
-                        <p><strong>Email:</strong> {{profile.user.email }}</p>
-                        <p><strong>Mobile:</strong> {{profile.mobile}}</p>
-                        <p><strong>Birth Date :</strong> {{profile.dob}}</p>
-                        <p><strong>PIN Code :</strong> {{profile.pincode}}</p>
-                        <p><strong>Gender:</strong> {{profile.gender}}</p>
-                        <p><strong>Age :</strong> {{profile.age}}</p>
-                        <p><strong>Joined :</strong> {{profile.register_date}}</p>
-                        <!-- Add more user details as needed -->
+                    <!-- User Information -->
+                    <div rowspan="50" class="col-md-8">
+                      <div class="card mb-1">
+                        <div class="card-header bg-primary text-white">
+                          User Details
+                        </div>
+                        <div class="card-body">
+                          <p><strong>Name:</strong>{{profile.user.first_name}} {{profile.user.last_name}} </p>
+                          <p><strong>Location:</strong> {{profile.address}}</p>
+                          <p><strong>Email:</strong> {{profile.user.email }}</p>
+                          <p><strong>Mobile:</strong> {{profile.mobile}}</p>
+                          <p><strong>Birth Date :</strong> {{profile.dob}}</p>
+                          <p><strong>PIN Code :</strong> {{profile.pincode}}</p>
+                          <p><strong>Gender:</strong> {{profile.gender}}</p>
+                          <p><strong>Age :</strong> {{profile.age}}</p>
+                          <p><strong>Joined :</strong> {{profile.register_date}}</p>
+                          <!-- Add more user details as needed -->
+                        </div>
+                      </div>>
                     </div>
-                </div>>
-            </div>
-        </div>
-        
-        <!-- Action Buttons -->
-        <div class="container mt-4 ">
-            <div class="row">
-                <div class="col text-center">
-                    <button class="btn btn-primary me-3"><a style="text-decoration: none; color: white;" href="{% url 'create' %}">Create Advertisement </a></button>
-                    <button class="btn btn-secondary me-3"><a style="text-decoration: none; color: white;" href="{% url 'edit' %}">Edit Profile</a></button>
-                    <button class="btn btn-success me-3"><a style="text-decoration: none; color: white;" href="{% url 'password_change' %}">Change Password</a></button>
-                    <!-- <button class="btn btn-danger"> <a style="text-decoration: none; color: white;" href="{% url 'logout' %}">Logout</a></button> -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    {% for advertise in advertises %}
-  
-    <div class="container">
-        <h3 class="row justify-content-center"> Your Services </h3>
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <div class="card shadow mb-3">
-              <div class="row g-0">
-                <div class="col-md-6">
-                  <div class="card-body">
-                    <h5 class="card-title">Service Details</h5>
-                    <div class="service-details">
-                      <p><strong>Service Name:</strong> {{advertise.service_name}}</p>
-                      <p><strong> Price  :</strong>{{advertise.price}}</p>
-                      <p><strong>Registered Date:</strong> 1st January, 2024</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="services-photo col-md-12">
-                    <img  src="{{ advertise.service_img.url }}" class="img-fluid advertise-image" alt="Service Photo">
-                  </div>
-                </div>
-                {% if advertise.user.profile.status  == True %}
-                    {% comment %} <button class=" btn btn-success"> <a style="text-decoration: none; color: white;" >Go InActive </a></button> {% endcomment %}
-
-                    <div class="row">
-                      
-                          <div class="bg-success rounded ml-3 text-center ">
-                              <p style="text-decoration: none; color: white; " > Active Service </p>
-                          </div>
-                      
-                  </div>
-
-                   {% else %} 
-                   <div class="row justify-content-center">
-                      
-                    <div class="bg-danger rounded ml-3 text-center  ">
-                        <p style="text-decoration: none; color: white; " >Inactive Service </p>
-                    </div>
-                
-            </div>
-                    {% comment %} <button class="btn btn-success"> <a style="text-decoration: none; color: white;">Active</a></button> {% endcomment %}
-                {% endif %}
               </div>
-              <br>
-              <hr>
-              {% comment %} <h1> Inquireyg</h1>
-              {% for comment in advertise.inquirys.all  %}
-                  {{comment.message}}
-                  <h1> {{ comment.posted_by }}</h1>
-              {% endfor %}
-            </div> {% endcomment %}
 
-            {% comment %} <div class="px-5 py-5">
-              <form method="post">
-                 {% csrf_token %} 
-                 <div>
-                  {{ comment_form.message }}
-                 </div>
-
-                 <div>
-                <input type="hidden" name="post_id" id="post_id" value="{{advertise.id}}"  >
-                <input type="hidden" name="posted_by" id="posted_by" value="{{ current_user}}"  >
+              <!-- Action Buttons -->
+              <div class="container mt-4 ">
+                <div class="row">
+                  <div class="col text-center">
+                    <button class="btn btn-primary me-3"><a style="text-decoration: none; color: white;"
+                        href="{% url 'create' %}">Create Advertisement </a></button>
+                    <button class="btn btn-secondary me-3"><a style="text-decoration: none; color: white;"
+                        href="{% url 'edit' %}">Edit Profile</a></button>
+                    <button class="btn btn-success me-3"><a style="text-decoration: none; color: white;"
+                        href="{% url 'password_change' %}">Change Password</a></button>
+                    <!-- <button class="btn btn-danger"> <a style="text-decoration: none; color: white;" href="{% url 'logout' %}">Logout</a></button> -->
+                  </div>
                 </div>
+              </div>
+        </div>
 
-                 <div>
-                  <button type='submit'>Submit</button>
+
+
+        {% for advertise in advertises %}
+
+        <div class="container">
+          <h3 class="row justify-content-center"> Your Services </h3>
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="card shadow mb-3">
+                <div class="row g-0">
+                  <div class="col-md-6">
+                    <div class="card-body">
+                      <h5 class="card-title">Service Details</h5>
+                      <div class="service-details">
+                        <p><strong>Service Name:</strong> {{advertise.service_name}}</p>
+                        <p><strong> Price :</strong>{{advertise.price}}</p>
+                        <p><strong>Registered Date:</strong> 1st January, 2024</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="services-photo col-md-12">
+                      <img src="{{ advertise.service_img.url }}" class="img-fluid advertise-image" alt="Service Photo">
+                    </div>
+                  </div>
+                  {% if advertise.user.profile.status == True %}
+                  {% comment %} <button class=" btn btn-success"> <a style="text-decoration: none; color: white;">Go
+                      InActive </a></button> {% endcomment %}
+
+                  <div class="row">
+
+                    <div class="bg-success rounded ml-3 text-center ">
+                      <p style="text-decoration: none; color: white; "> Active Service </p>
+                    </div>
+
+                  </div>
+
+                  {% else %}
+                  <div class="row justify-content-center">
+
+                    <div class="bg-danger rounded ml-3 text-center  ">
+                      <p style="text-decoration: none; color: white; ">Inactive Service </p>
+                    </div>
+
+                  </div>
+                  {% comment %} <button class="btn btn-success"> <a
+                      style="text-decoration: none; color: white;">Active</a></button> {% endcomment %}
+                  {% endif %}
                 </div>
-              </form>
+                <br>
+                <hr>
+                {% comment %} <h1> Inquireyg</h1>
+                {% for comment in advertise.inquirys.all %}
+                {{comment.message}}
+                <h1> {{ comment.posted_by }}</h1>
+                {% endfor %}
+              </div> {% endcomment %}
 
-            </div> {% endcomment %}
-            <div class="container">
-              <h2 class=" row justify-content-center">Work Inqriry </h2>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Contact Detail </th>
-                    <th>Inquiry</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                    <th>contact</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
+              {% comment %} <div class="px-5 py-5">
+                <form method="post">
+                  {% csrf_token %}
+                  <div>
+                    {{ comment_form.message }}
+                  </div>
 
-                  {% for comment in advertise.inquirys.all  %}
+                  <div>
+                    <input type="hidden" name="post_id" id="post_id" value="{{advertise.id}}">
+                    <input type="hidden" name="posted_by" id="posted_by" value="{{ current_user}}">
+                  </div>
 
-                  <tr>
-                    <td>1</td>
-                    <td>{{comment.posted_by}}</td>
-                    <td>{{comment.inquiry_mobile}}</td>
-                    <td> {{comment.message}}</td>
-                    <td> {{comment.work_date}} </td>
-                    <td> 
-                      
-                      <form action="{% url 'delete_inquiry' comment.id %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger " > <i class="fa-solid fa-trash"></i> Delete</button>
-                      </form>
-                    </td>
-                    <td> 
-                      <button class="btn btn-outline-success"  onclick="openPhoneDialer('{{ comment.inquiry_mobile}}')"><i class="fas fa-phone"></i> Contact Now  </button>
-                    </td>
-                  </tr>
-                  {% endfor %}
-                  
+                  <div>
+                    <button type='submit'>Submit</button>
+                  </div>
+                </form>
 
-                  <!-- Add more rows as needed -->
-                </tbody>
-              </table>
+              </div> {% endcomment %}
+              <div class="container">
+                <h2 class=" row justify-content-center">Work Inqriry </h2>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Contact Detail </th>
+                      <th>Inquiry</th>
+                      <th>Date</th>
+                      <th>Action</th>
+                      <th>contact</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% for comment in advertise.inquirys.all %}
+
+                    <tr>
+                      <td>1</td>
+                      <td>{{comment.posted_by}}</td>
+                      <td>{{comment.inquiry_mobile}}</td>
+                      <td> {{comment.message}}</td>
+                      <td> {{comment.work_date}} </td>
+                      <td>
+
+                        <form action="{% url 'delete_inquiry' comment.id %}" method="post">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-danger "> <i class="fa-solid fa-trash"></i>
+                            Delete</button>
+                        </form>
+                      </td>
+                      <td>
+                        <button class="btn btn-outline-success"
+                          onclick="openPhoneDialer('{{ comment.inquiry_mobile}}')"><i class="fas fa-phone"></i> Contact
+                          Now </button>
+                      </td>
+                    </tr>
+                    {% endfor %}
+
+
+                    <!-- Add more rows as needed -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      </div>
-      {% endfor %}
+        {% endfor %}
 
-    </div>
-
-
-
-    <div class="container">
-    {% if request.user.is_superuser %}
-
-
-    <div class="flex">
-      <div class="w-1/2 shadow-lg ml-10">
-        <h1> Total Enquirys</h1>
-        <canvas id="myChart" width="400" height="400"></canvas>
       </div>
 
-      <div class="w-1/2 shadow-lg ml-10">
-        <h1>Total Category wise Services</h1>
-        <canvas id="categoryChart" width="400" height="400"></canvas>
-      </div>
-      
-    </div>
-    
-    
-    <div class="mt-5">
-      <div class="w-10/12 shadow-lg ml-10">
-        
-        <h3>Number of visitors: {{ visitor_count }}</h3>
-          <canvas id="visitorChart" width="499" height="400"></canvas>
+
+
+      <div class="container">
+        {% if request.user.is_superuser %}
+
+        <div class="row">
+          <!-- Column for pie chart -->
+          <div class="col-md-6">
+            <h1> Total Enquirys</h1>
+            <canvas id="myChart" width="400" height="400"></canvas>
+          </div>
+          <!-- Column for bar chart -->
+          <div class="col-md-6">
+            <h1>Total Category wise Services</h1>
+            <canvas id="categoryChart" width="400" height="400"></canvas>
+          </div>
         </div>
+        <!-- Second row -->
+        <br>
+        <hr>
+        
+        <div class="row">
+          <!-- Column for line chart -->
+          <div class="col-md-12">
+            <h3>Number of visitors: {{ visitor_count }}</h3>
+            <canvas id="visitorChart" width="499" height="400"></canvas>
+          </div>
+        </div>
+
+
+        {% endif %}
       </div>
-{% endif %}
-    </div>
 
 
 
 
- <script>
-  function openPhoneDialer(phoneNumber) {
-    window.location.href = 'tel:' + phoneNumber;
-}
-</script>
+      <script>
+        function openPhoneDialer(phoneNumber) {
+          window.location.href = 'tel:' + phoneNumber;
+        }
+      </script>
 
-{% comment %} <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script> {% endcomment %}
-<script>
-  // Parse data passed from Django
-  var labels = JSON.parse('{{ labels|escapejs }}');
-  var data = JSON.parse('{{ data|escapejs }}');
+      {% comment %}
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script> {% endcomment %}
+      <script>
+        // Parse data passed from Django
+        var labels = JSON.parse('{{ labels|escapejs }}');
+        var data = JSON.parse('{{ data|escapejs }}');
 
-  // Create chart
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-          labels: labels,
-          datasets: [{
+        // Create chart
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
               label: 'Number of Messages',
               data: data,
               backgroundColor: 'rgba(255, 99, 132, 0.2)',
               borderColor: 'rgba(255, 99, 132, 1)',
               borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
+            }]
+          },
+          options: {
+            scales: {
               y: {
-                  beginAtZero: true
+                beginAtZero: true
               }
+            }
           }
-      }
-  });
+        });
 
 
 
 
-  var category_labels = JSON.parse('{{ category_labels|escapejs }}');
-  var category_values = JSON.parse('{{ category_values|escapejs }}');
+        var category_labels = JSON.parse('{{ category_labels|escapejs }}');
+        var category_values = JSON.parse('{{ category_values|escapejs }}');
 
-  // Create category count chart
-  var ctx2 = document.getElementById('categoryChart').getContext('2d');
-  var categoryChart = new Chart(ctx2, {
-      type: 'pie',
-      data: {
-          labels: category_labels,
-          datasets: [{
+        // Create category count chart
+        var ctx2 = document.getElementById('categoryChart').getContext('2d');
+        var categoryChart = new Chart(ctx2, {
+          type: 'pie',
+          data: {
+            labels: category_labels,
+            datasets: [{
               label: 'Number of Advertisements',
               data: category_values,
               backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
               borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
               borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
+            }]
+          },
+          options: {
+            scales: {
               y: {
-                  beginAtZero: true
+                beginAtZero: true
               }
+            }
           }
-      }
-  });
+        });
 
-  var dates = JSON.parse('{{ dates|escapejs }}');
-  var counts = JSON.parse('{{ counts|escapejs }}');
+        var dates = JSON.parse('{{ dates|escapejs }}');
+        var counts = JSON.parse('{{ counts|escapejs }}');
 
-  var ctx = document.getElementById('visitorChart').getContext('2d');
-  var visitorChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-          labels: dates,
-          datasets: [{
+        var ctx = document.getElementById('visitorChart').getContext('2d');
+        var visitorChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: dates,
+            datasets: [{
               label: 'Visitor Count',
               data: counts,
               fill: false,
               borderColor: 'rgb(75, 192, 192)',
               tension: 0.1
-          }]
-      },
-      options: {
-          scales: {
+            }]
+          },
+          options: {
+            scales: {
               y: {
-                  beginAtZero: true
+                beginAtZero: true
               }
+            }
           }
-      }
-  });
+        });
 
 
-</script>
- <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+      </script>
+      <!-- Bootstrap JS -->
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
 
 
 
- {% endblock %}
+{% endblock %}
